@@ -84,7 +84,8 @@ function CheckboxIcon({ checked, indeterminate }: { checked?: boolean; indetermi
 
 // ── Table Header Cell ─────────────────────────────────────────────
 interface ThCellProps {
-  column: TableColumn;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  column: TableColumn<any>;
   style?: React.CSSProperties;
 }
 

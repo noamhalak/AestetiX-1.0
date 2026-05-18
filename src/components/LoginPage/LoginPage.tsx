@@ -210,7 +210,7 @@ function LoginForm({
             </div>
           </div>
           <Alert type="error" message="יש לאפס סיסמה או לפנות לתמיכה" showIcon />
-          <Button type="default" block onClick={() => { setState('forgot'); setAttempts(0); }}>
+          <Button btnType="default" block onClick={() => { setState('forgot'); setAttempts(0); }}>
             אפס סיסמה
           </Button>
           <Link onClick={() => { setState('idle'); setAttempts(0); setEmail(''); setPassword(''); }}>
@@ -270,9 +270,9 @@ function LoginForm({
           </label>
           <Input
             value={email}
-            onChange={(v) => { setEmail(v); if (state !== 'loading') setState('typing'); }}
+            onChange={(e) => { setEmail(e.target.value); if (state !== 'loading') setState('typing'); }}
             placeholder="name@company.com"
-            status={emailStatus}
+            status={emailStatus || undefined}
             size="large"
             type="email"
             autoComplete="email"
@@ -300,9 +300,9 @@ function LoginForm({
           </div>
           <Input
             value={password}
-            onChange={(v) => { setPassword(v); if (state !== 'loading') setState('typing'); }}
+            onChange={(e) => { setPassword(e.target.value); if (state !== 'loading') setState('typing'); }}
             placeholder="הכנס סיסמה"
-            status={passwordStatus}
+            status={passwordStatus || undefined}
             size="large"
             type={showPassword ? 'text' : 'password'}
             autoComplete="current-password"
@@ -333,7 +333,7 @@ function LoginForm({
 
         {/* Submit */}
         <Button
-          type="primary"
+          btnType="primary"
           size="large"
           block
           loading={state === 'loading'}
@@ -349,7 +349,7 @@ function LoginForm({
       {/* Social logins */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <Button
-          type="default"
+          btnType="default"
           size="large"
           block
           icon={
@@ -365,7 +365,7 @@ function LoginForm({
         </Button>
 
         <Button
-          type="default"
+          btnType="default"
           size="large"
           block
           icon={
@@ -423,7 +423,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
             message="הקישור בתוקף ל-30 דקות"
             showIcon
           />
-          <Button type="primary" block onClick={onBack}>
+          <Button btnType="primary" block onClick={onBack}>
             חזור להתחברות
           </Button>
           <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)' }}>
@@ -457,9 +457,9 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
           </label>
           <Input
             value={email}
-            onChange={(v) => { setEmail(v); setEmailError(''); }}
+            onChange={(e) => { setEmail(e.target.value); setEmailError(''); }}
             placeholder="name@company.com"
-            status={emailError ? 'error' : ''}
+            status={emailError ? 'error' : undefined}
             size="large"
             type="email"
           />
@@ -469,7 +469,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
         </div>
 
         <Button
-          type="primary"
+          btnType="primary"
           size="large"
           block
           loading={loading}
@@ -635,7 +635,7 @@ function ForgotSentPreview() {
           </div>
         </div>
         <Alert type="info" message="הקישור בתוקף ל-30 דקות" showIcon />
-        <Button type="primary" block>חזור להתחברות</Button>
+        <Button btnType="primary" block>חזור להתחברות</Button>
         <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)' }}>
           לא קיבלת? <Link style={{ fontSize: '14px' }} onClick={() => setSent(false)}>שלח שוב</Link>
         </div>

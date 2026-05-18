@@ -233,10 +233,6 @@ export function Pagination({
             value={jumperValue}
             disabled={disabled}
             onChange={(e) => setJumperValue(e.target.value)}
-            onPressEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              const n = parseInt((e.target as HTMLInputElement).value, 10);
-              if (!isNaN(n)) { gotoPage(n); setJumperValue(''); }
-            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 const n = parseInt(jumperValue, 10);

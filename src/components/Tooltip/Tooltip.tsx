@@ -107,10 +107,9 @@ export function Tooltip({
             fontFamily: '"Heebo", sans-serif',
             padding: '6px 8px',
             borderRadius: '6px',
-            whiteSpace: 'nowrap',
+            whiteSpace: 'pre-line' as React.CSSProperties['whiteSpace'],
             maxWidth: '320px',
             wordBreak: 'break-word',
-            whiteSpace: 'pre-line' as 'pre-line',
             boxShadow: '0 6px 16px rgba(0,0,0,0.08)',
             pointerEvents: 'none',
           }}

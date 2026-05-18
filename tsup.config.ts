@@ -8,7 +8,10 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   treeshake: true,
-  external: ['react', 'react-dom', '@tabler/icons-react'],
+  outExtension({ format }) {
+    return { js: format === 'esm' ? '.js' : '.cjs' };
+  },
+  external: ['react', 'react/jsx-runtime', 'react-dom', '@tabler/icons-react'],
   esbuildOptions(options) {
     options.jsx = 'automatic';
   },
