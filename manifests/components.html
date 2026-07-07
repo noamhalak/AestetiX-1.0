@@ -588,13 +588,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/29 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">29/29 infos</a><span class="filter-pill ok" aria-disabled="true">257 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/29 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">29/29 infos</a><span class="filter-pill ok" aria-disabled="true">250 stories ok</span></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.7s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>1.1s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -2143,7 +2143,7 @@
       <div class="badges">
         <label for="c-9-components-icon-props" class="badge ok as-toggle">6 prop types</label>
         <label for="c-9-components-icon-info" class="badge info as-toggle">1 info</label>
-        <label for="c-9-components-icon-stories" class="badge ok as-toggle">11 stories</label>
+        <label for="c-9-components-icon-stories" class="badge ok as-toggle">4 stories</label>
         
         
       </div>
@@ -2203,7 +2203,8 @@ style?: React.CSSProperties</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Icon } from "@aesthetix/ui";</code></pre>
+                <pre><code>import { Icon } from "@aesthetix/ui";
+import * as TablerIcons from "@tabler/icons-react";</code></pre>
               </div>
           
           
@@ -2214,113 +2215,122 @@ style?: React.CSSProperties</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;Icon icon={IconBell} size={24} color=&quot;currentColor&quot; strokeWidth={2} /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;Icon
+    icon={TablerIcons.IconBell as TablerIconComponent}
+    size={24}
+    color=&quot;currentColor&quot;
+    stroke={2} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Bell</span>
+                <span class="ex-name">All Icons</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Bell = () =&gt; &lt;Icon icon={IconBell} size={24} color=&quot;currentColor&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">User</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const User = () =&gt; &lt;Icon icon={IconUser} size={24} color=&quot;currentColor&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Home</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Home = () =&gt; &lt;Icon icon={IconHome} size={24} color=&quot;currentColor&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Settings</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Settings = () =&gt; &lt;Icon icon={IconSettings} size={24} color=&quot;currentColor&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Large</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Large = () =&gt; &lt;Icon icon={IconStar} size={40} color=&quot;#faad14&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Small</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Small = () =&gt; &lt;Icon icon={IconCheck} size={16} color=&quot;#52c41a&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Colored</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Colored = () =&gt; &lt;Icon icon={IconHeart} size={32} color=&quot;#ff4d4f&quot; strokeWidth={2} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Thin Stroke</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ThinStroke = () =&gt; &lt;Icon icon={IconSearch} size={24} color=&quot;currentColor&quot; strokeWidth={1} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">All Common Icons</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const AllCommonIcons = () =&gt; (
-  &lt;div style={{ display: &#39;flex&#39;, gap: 16, flexWrap: &#39;wrap&#39;, alignItems: &#39;center&#39; }}&gt;
-    {[
-      { icon: IconHome, name: &#39;בית&#39; },
-      { icon: IconUser, name: &#39;משתמש&#39; },
-      { icon: IconBell, name: &#39;פעמון&#39; },
-      { icon: IconSettings, name: &#39;הגדרות&#39; },
-      { icon: IconSearch, name: &#39;חיפוש&#39; },
-      { icon: IconHeart, name: &#39;לב&#39; },
-      { icon: IconStar, name: &#39;כוכב&#39; },
-      { icon: IconTrash, name: &#39;מחיקה&#39; },
-      { icon: IconEdit, name: &#39;עריכה&#39; },
-      { icon: IconCheck, name: &#39;אישור&#39; },
-      { icon: IconX, name: &#39;סגירה&#39; },
-      { icon: IconPlus, name: &#39;הוספה&#39; },
-      { icon: IconMail, name: &#39;מייל&#39; },
-      { icon: IconPhone, name: &#39;טלפון&#39; },
-      { icon: IconChevronDown, name: &#39;חץ&#39; },
-    ].map(({ icon, name }) =&gt; (
-      &lt;div key={name} style={{ display: &#39;flex&#39;, flexDirection: &#39;column&#39;, alignItems: &#39;center&#39;, gap: 4 }}&gt;
-        &lt;Icon icon={icon} size={24} /&gt;
-        &lt;span style={{ fontSize: 11, color: &#39;rgba(0,0,0,0.45)&#39; }}&gt;{name}&lt;/span&gt;
+              <pre><code>const AllIcons = () =&gt; {
+  const [search, setSearch] = useState(&#39;&#39;);
+  const [copied, setCopied] = useState(&#39;&#39;);
+
+  const filtered = useMemo(() =&gt; {
+    const q = search.toLowerCase().replace(/\s+/g, &#39;&#39;);
+    return q ? allIcons.filter(([name]) =&gt; name.toLowerCase().includes(q)) : allIcons;
+  }, [search]);
+
+  const copy = (name: string) =&gt; {
+    navigator.clipboard.writeText(`&lt;${name} /&gt;`);
+    setCopied(name);
+    setTimeout(() =&gt; setCopied(&#39;&#39;), 1500);
+  };
+
+  return (
+    &lt;div style={{ fontFamily: &#39;&quot;Heebo&quot;, sans-serif&#39;, width: 900 }}&gt;
+      &lt;div style={{ marginBottom: 16, display: &#39;flex&#39;, alignItems: &#39;center&#39;, gap: 12 }}&gt;
+        &lt;input
+          placeholder=&quot;חפש אייקון...&quot;
+          value={search}
+          onChange={(e) =&gt; setSearch(e.target.value)}
+          style={{
+            flex: 1,
+            padding: &#39;8px 12px&#39;,
+            border: &#39;1px solid #d9d9d9&#39;,
+            borderRadius: 6,
+            fontSize: 14,
+            direction: &#39;rtl&#39;,
+            outline: &#39;none&#39;,
+          }}
+        /&gt;
+        &lt;span style={{ color: &#39;#888&#39;, fontSize: 13, whiteSpace: &#39;nowrap&#39; }}&gt;
+          {filtered.length.toLocaleString()} אייקונים
+        &lt;/span&gt;
       &lt;/div&gt;
-    ))}
-  &lt;/div&gt;
-);</code></pre>
+
+      &lt;div style={{
+        display: &#39;grid&#39;,
+        gridTemplateColumns: &#39;repeat(auto-fill, minmax(90px, 1fr))&#39;,
+        gap: 4,
+        maxHeight: 600,
+        overflowY: &#39;auto&#39;,
+        padding: 4,
+      }}&gt;
+        {filtered.map(([name, IconComp]) =&gt; (
+          &lt;div
+            key={name}
+            title={name}
+            onClick={() =&gt; copy(name)}
+            style={{
+              display: &#39;flex&#39;,
+              flexDirection: &#39;column&#39;,
+              alignItems: &#39;center&#39;,
+              gap: 4,
+              padding: &#39;10px 4px&#39;,
+              borderRadius: 6,
+              cursor: &#39;pointer&#39;,
+              background: copied === name ? &#39;#e6f4ff&#39; : &#39;transparent&#39;,
+              border: copied === name ? &#39;1px solid #91caff&#39; : &#39;1px solid transparent&#39;,
+              transition: &#39;background 0.15s&#39;,
+            }}
+            onMouseEnter={(e) =&gt; {
+              if (copied !== name) (e.currentTarget as HTMLDivElement).style.background = &#39;#f5f5f5&#39;;
+            }}
+            onMouseLeave={(e) =&gt; {
+              if (copied !== name) (e.currentTarget as HTMLDivElement).style.background = &#39;transparent&#39;;
+            }}
+          &gt;
+            &lt;IconComp size={22} stroke={1.5} /&gt;
+            &lt;span style={{
+              fontSize: 9,
+              color: &#39;#888&#39;,
+              textAlign: &#39;center&#39;,
+              wordBreak: &#39;break-all&#39;,
+              lineHeight: 1.3,
+              maxWidth: 80,
+            }}&gt;
+              {name.replace(&#39;Icon&#39;, &#39;&#39;)}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+
+      {copied &amp;&amp; (
+        &lt;div style={{
+          position: &#39;fixed&#39;,
+          bottom: 24,
+          left: &#39;50%&#39;,
+          transform: &#39;translateX(-50%)&#39;,
+          background: &#39;#141414&#39;,
+          color: &#39;#fff&#39;,
+          padding: &#39;8px 16px&#39;,
+          borderRadius: 6,
+          fontSize: 13,
+          zIndex: 9999,
+        }}&gt;
+          {`&lt;${copied} /&gt;`} הועתק
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+};</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -2331,11 +2341,30 @@ style?: React.CSSProperties</code></pre>
               
               <pre><code>const SizeScale = () =&gt; (
   &lt;div style={{ display: &#39;flex&#39;, gap: 16, alignItems: &#39;center&#39; }}&gt;
-    &lt;Icon icon={IconStar} size={16} /&gt;
-    &lt;Icon icon={IconStar} size={20} /&gt;
-    &lt;Icon icon={IconStar} size={24} /&gt;
-    &lt;Icon icon={IconStar} size={32} /&gt;
-    &lt;Icon icon={IconStar} size={48} /&gt;
+    {[16, 20, 24, 32, 48].map((s) =&gt; (
+      &lt;div key={s} style={{ display: &#39;flex&#39;, flexDirection: &#39;column&#39;, alignItems: &#39;center&#39;, gap: 4 }}&gt;
+        &lt;TablerIcons.IconStar size={s} /&gt;
+        &lt;span style={{ fontSize: 11, color: &#39;#888&#39; }}&gt;{s}px&lt;/span&gt;
+      &lt;/div&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Stroke Weights</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const StrokeWeights = () =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, gap: 20, alignItems: &#39;center&#39; }}&gt;
+    {[1, 1.5, 2, 2.5, 3].map((w) =&gt; (
+      &lt;div key={w} style={{ display: &#39;flex&#39;, flexDirection: &#39;column&#39;, alignItems: &#39;center&#39;, gap: 4 }}&gt;
+        &lt;TablerIcons.IconHeart size={28} stroke={w} /&gt;
+        &lt;span style={{ fontSize: 11, color: &#39;#888&#39; }}&gt;stroke {w}&lt;/span&gt;
+      &lt;/div&gt;
+    ))}
   &lt;/div&gt;
 );</code></pre>
             </div>
