@@ -20,13 +20,6 @@ const meta: Meta<typeof Modal> = {
     title: { control: 'text', description: 'כותרת' },
     okText: { control: 'text', description: 'טקסט כפתור אישור' },
     cancelText: { control: 'text', description: 'טקסט כפתור ביטול' },
-    showOk: { control: 'boolean', description: 'הצג כפתור אישור' },
-    showCancel: { control: 'boolean', description: 'הצג כפתור ביטול' },
-    position: {
-      control: 'select',
-      options: ['default', 'top', 'center'],
-      description: 'מיקום המודל',
-    },
     width: { control: 'number', description: 'רוחב' },
   },
   args: {
@@ -34,9 +27,6 @@ const meta: Meta<typeof Modal> = {
     title: 'כותרת המודל',
     okText: 'אוקיי',
     cancelText: 'בטל',
-    showOk: true,
-    showCancel: true,
-    position: 'default',
     width: 520,
   },
 };
@@ -52,18 +42,6 @@ export const Default: Story = {
       </p>
     ),
   },
-};
-
-export const CenterPosition: Story = {
-  args: { position: 'center', children: <p>מודל ממורכז</p> },
-};
-
-export const TopPosition: Story = {
-  args: { position: 'top', children: <p>מודל בחלק העליון</p> },
-};
-
-export const NoButtons: Story = {
-  args: { showOk: false, showCancel: false, children: <p>מודל ללא כפתורים</p> },
 };
 
 export const InformationSuccess: Story = {

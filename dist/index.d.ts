@@ -1,5 +1,52 @@
-import React from 'react';
+import * as React$1 from 'react';
+import React__default from 'react';
+import * as antd from 'antd';
+import { ConfigProvider, ThemeConfig, ButtonProps as ButtonProps$1, InputProps as InputProps$1, InputRef, SelectProps as SelectProps$1, ModalProps as ModalProps$1, Modal as Modal$1, TagProps as TagProps$1, Tag as Tag$1, MenuProps, BreadcrumbProps, TooltipProps } from 'antd';
+export { Alert, AlertProps, Avatar, Badge, BadgeProps, Breadcrumb, BreadcrumbProps, Checkbox, Divider, DividerProps, Drawer, DrawerProps, Empty, EmptyProps, Menu, MenuProps, Pagination, PaginationProps, Progress, ProgressProps, Radio, Segmented, Skeleton, SkeletonProps, Spin, SpinProps, Steps, Switch, SwitchProps, Table, Tabs, Tooltip, TooltipProps, Typography, notification } from 'antd';
+import * as antd_es_input_TextArea from 'antd/es/input/TextArea';
+import * as antd_es_input from 'antd/es/input';
+import * as _rc_component_select_lib_OptGroup from '@rc-component/select/lib/OptGroup';
+import * as _rc_component_select_lib_Option from '@rc-component/select/lib/Option';
 import * as react_jsx_runtime from 'react/jsx-runtime';
+import * as antd_es_avatar_AvatarGroup from 'antd/es/avatar/AvatarGroup';
+import * as antd_es_badge from 'antd/es/badge';
+export { ColumnType as TableColumn, TableProps } from 'antd/es/table';
+export { SortOrder } from 'antd/es/table/interface';
+import { CheckboxGroupProps } from 'antd/es/checkbox';
+export { CheckboxGroupProps, CheckboxProps } from 'antd/es/checkbox';
+import * as antd_es_radio_radioButton from 'antd/es/radio/radioButton';
+import { RadioGroupProps } from 'antd/es/radio';
+export { RadioGroupProps, RadioProps } from 'antd/es/radio';
+import { SegmentedProps } from 'antd/es/segmented';
+export { SegmentedProps } from 'antd/es/segmented';
+import { StepsProps } from 'antd/es/steps';
+export { StepsProps } from 'antd/es/steps';
+import * as antd_es_skeleton_Node from 'antd/es/skeleton/Node';
+import * as antd_es_skeleton_Image from 'antd/es/skeleton/Image';
+import * as antd_es_skeleton_Input from 'antd/es/skeleton/Input';
+import * as antd_es_skeleton_Button from 'antd/es/skeleton/Button';
+import * as antd_es_skeleton_Avatar from 'antd/es/skeleton/Avatar';
+import * as antd_es_typography_Paragraph from 'antd/es/typography/Paragraph';
+export { ParagraphProps } from 'antd/es/typography/Paragraph';
+import * as antd_es_typography_Link from 'antd/es/typography/Link';
+export { LinkProps } from 'antd/es/typography/Link';
+import * as antd_es_typography_Text from 'antd/es/typography/Text';
+export { TextProps } from 'antd/es/typography/Text';
+import * as antd_es_typography_Title from 'antd/es/typography/Title';
+export { TitleProps } from 'antd/es/typography/Title';
+export { GroupProps as AvatarGroupProps, AvatarProps } from 'antd/es/avatar';
+export { ArgsProps as NotificationProps } from 'antd/es/notification/interface';
+export { DefaultOptionType as SelectOption } from 'antd/es/select';
+export { TabsProps } from 'antd/es/tabs';
+
+interface AestetiXProviderProps {
+    children: React__default.ReactNode;
+    direction?: 'rtl' | 'ltr';
+    locale?: React__default.ComponentProps<typeof ConfigProvider>['locale'];
+}
+declare const AestetiXProvider: React__default.FC<AestetiXProviderProps>;
+
+declare const aesthetixTheme: ThemeConfig;
 
 declare const fontFamily: {
     readonly base: "\"Heebo\", sans-serif";
@@ -332,662 +379,167 @@ declare const tokens: {
 type Tokens = typeof tokens;
 
 type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link';
-type ButtonSize = 'small' | 'default' | 'large';
-type ButtonContent = 'default' | 'icon' | 'icon-left' | 'icon-right';
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    btnType?: ButtonType;
-    size?: ButtonSize;
-    content?: ButtonContent;
-    danger?: boolean;
-    ghost?: boolean;
-    loading?: boolean;
-    icon?: React.ReactNode;
-    children?: React.ReactNode;
-    block?: boolean;
+type ButtonSize = 'small' | 'middle' | 'large';
+type ButtonShape = 'default' | 'circle' | 'round';
+interface ButtonProps extends ButtonProps$1 {
 }
-declare const Button: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>>;
+declare const Button: React__default.ForwardRefExoticComponent<ButtonProps & React__default.RefAttributes<HTMLButtonElement>>;
 
-type InputSize = 'small' | 'default' | 'large';
-type InputStatus = 'default' | 'error' | 'warning';
-interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+type InputSize = 'small' | 'middle' | 'large';
+type InputStatus = '' | 'error' | 'warning';
+interface InputProps extends Omit<InputProps$1, 'size' | 'status'> {
     size?: InputSize;
     status?: InputStatus;
-    prefix?: React.ReactNode;
-    suffix?: React.ReactNode;
-    allowClear?: boolean;
-    addonBefore?: React.ReactNode;
-    addonAfter?: React.ReactNode;
-    required?: boolean;
-    helperText?: string;
-    label?: string;
 }
-declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;
+declare const Input: React__default.ForwardRefExoticComponent<InputProps & React__default.RefAttributes<InputRef>>;
+declare const InputPassword: React__default.ForwardRefExoticComponent<antd_es_input.PasswordProps & React__default.RefAttributes<InputRef>>;
+declare const InputSearch: React__default.ForwardRefExoticComponent<antd_es_input.SearchProps & React__default.RefAttributes<InputRef>>;
+declare const TextArea: React__default.ForwardRefExoticComponent<antd_es_input.TextAreaProps & React__default.RefAttributes<antd_es_input_TextArea.TextAreaRef>>;
 
-interface ModalProps {
-    open?: boolean;
-    title?: React.ReactNode;
-    titleIcon?: React.ReactNode;
-    children?: React.ReactNode;
-    onOk?: () => void;
-    onCancel?: () => void;
-    okText?: string;
-    cancelText?: string;
-    showOk?: boolean;
-    showCancel?: boolean;
-    position?: 'default' | 'top' | 'center';
-    className?: string;
-    width?: number | string;
-}
-declare function Modal({ open, title, titleIcon, children, onOk, onCancel, okText, cancelText, showOk, showCancel, position, className, width, }: ModalProps): react_jsx_runtime.JSX.Element | null;
-type InformationStatus = 'info' | 'error' | 'success' | 'warning';
-interface ModalInformationProps {
-    open?: boolean;
-    status?: InformationStatus;
-    title?: React.ReactNode;
-    description?: React.ReactNode;
-    onOk?: () => void;
-    onCancel?: () => void;
-    okText?: string;
-    cancelText?: string;
-    width?: number | string;
-}
-declare function ModalInformation({ open, status, title, description, onOk, onCancel, okText, cancelText, width, }: ModalInformationProps): react_jsx_runtime.JSX.Element | null;
-interface ModalConfirmationProps {
-    open?: boolean;
-    title?: React.ReactNode;
-    description?: React.ReactNode;
-    onOk?: () => void;
-    onCancel?: () => void;
-    okText?: string;
-    cancelText?: string;
-    danger?: boolean;
-    width?: number | string;
-}
-declare function ModalConfirmation({ open, title, description, onOk, onCancel, okText, cancelText, danger, width, }: ModalConfirmationProps): react_jsx_runtime.JSX.Element | null;
-
-type TagColor = 'default' | 'processing' | 'success' | 'warning' | 'error' | 'red' | 'volcano' | 'orange' | 'gold' | 'yellow' | 'lime' | 'green' | 'cyan' | 'blue' | 'geekblue' | 'purple' | 'magenta';
-interface TagProps {
-    color?: TagColor;
-    closable?: boolean;
-    onClose?: (e: React.MouseEvent) => void;
-    bordered?: boolean;
-    icon?: React.ReactNode;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Tag({ color, closable, onClose, bordered, icon, children, className, style, }: TagProps): react_jsx_runtime.JSX.Element | null;
-type TagStatusColor = 'default' | 'processing' | 'success' | 'warning' | 'error';
-interface TagStatusProps {
-    status?: TagStatusColor;
-    text?: React.ReactNode;
-    className?: string;
-}
-declare function TagStatus({ status, text, className }: TagStatusProps): react_jsx_runtime.JSX.Element;
-
-type TitleLevel = 1 | 2 | 3 | 4 | 5;
-interface TitleProps {
-    level?: TitleLevel;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-    disabled?: boolean;
-}
-declare function Title({ level, children, className, style, disabled }: TitleProps): react_jsx_runtime.JSX.Element;
-type TextType = 'default' | 'secondary' | 'success' | 'warning' | 'error' | 'disabled' | 'mark';
-type TextStyle = 'default' | 'underline' | 'delete' | 'italic' | 'strong' | 'medium';
-type TextSize = 'small' | 'default' | 'large' | 'extra-large';
-interface TextProps {
-    type?: TextType;
-    textStyle?: TextStyle;
-    size?: TextSize;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Text({ type, textStyle, size, children, className, style }: TextProps): react_jsx_runtime.JSX.Element;
-interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-    underlined?: boolean;
-    disabled?: boolean;
-    size?: TextSize;
-    children?: React.ReactNode;
-}
-declare function Link({ underlined, disabled, size, children, className, style, ...rest }: LinkProps): react_jsx_runtime.JSX.Element;
-interface CodeProps {
-    children?: React.ReactNode;
-    className?: string;
-}
-declare function Code({ children, className }: CodeProps): react_jsx_runtime.JSX.Element;
-interface ParagraphProps {
-    type?: TextType;
-    size?: TextSize;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Paragraph({ type, size, children, className, style }: ParagraphProps): react_jsx_runtime.JSX.Element;
-
-type MenuMode = 'inline' | 'vertical';
-type MenuTheme = 'light' | 'dark';
-interface MenuItemData {
-    key: string;
-    label: React.ReactNode;
-    icon?: React.ReactNode;
-    disabled?: boolean;
-    children?: MenuItemData[];
-}
-interface MenuGroupData {
-    key: string;
-    label: React.ReactNode;
-    children: MenuItemData[];
-}
-interface MenuProps {
-    items?: (MenuItemData | MenuGroupData)[];
-    mode?: MenuMode;
-    theme?: MenuTheme;
-    activeKey?: string;
-    defaultActiveKey?: string;
-    collapsed?: boolean;
-    onSelect?: (key: string) => void;
-    style?: React.CSSProperties;
-    className?: string;
-    width?: number | string;
-}
-declare function Menu({ items, mode, theme, activeKey: controlledActiveKey, defaultActiveKey, collapsed, onSelect, style, className, width, }: MenuProps): react_jsx_runtime.JSX.Element;
-interface TopNavItemData {
-    key: string;
-    label: React.ReactNode;
-    icon?: React.ReactNode;
-    disabled?: boolean;
-}
-interface MenuTopNavigationProps {
-    items?: TopNavItemData[];
-    theme?: MenuTheme;
-    activeKey?: string;
-    defaultActiveKey?: string;
-    onSelect?: (key: string) => void;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function MenuTopNavigation({ items, theme, activeKey: controlledActiveKey, defaultActiveKey, onSelect, className, style, }: MenuTopNavigationProps): react_jsx_runtime.JSX.Element;
-
-type SortOrder = 'asc' | 'desc' | null;
-type CellAlignment = 'left' | 'center' | 'right';
-interface TableColumn<T = Record<string, unknown>> {
-    key: string;
-    title: React.ReactNode;
-    dataIndex?: keyof T;
-    width?: number | string;
-    align?: CellAlignment;
-    sorter?: boolean;
-    sortOrder?: SortOrder;
-    onSort?: (order: SortOrder) => void;
-    filterable?: boolean;
-    onFilter?: () => void;
-    render?: (value: unknown, record: T, index: number) => React.ReactNode;
-    fixed?: 'left' | 'right';
-}
-interface TableProps<T = Record<string, unknown>> {
-    columns: TableColumn<T>[];
-    dataSource: T[];
-    rowKey?: keyof T | ((record: T) => string);
-    selectedRowKeys?: string[];
-    onSelectChange?: (keys: string[]) => void;
-    selectable?: boolean;
-    loading?: boolean;
-    empty?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Table<T extends Record<string, unknown> = Record<string, unknown>>({ columns, dataSource, rowKey, selectedRowKeys, onSelectChange, selectable, loading, empty, className, style, }: TableProps<T>): react_jsx_runtime.JSX.Element;
-
-type CheckboxSize = 'default' | 'small';
-interface CheckboxProps {
-    checked?: boolean;
-    defaultChecked?: boolean;
-    indeterminate?: boolean;
-    disabled?: boolean;
-    required?: boolean;
-    size?: CheckboxSize;
-    onChange?: (checked: boolean) => void;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-    id?: string;
-    name?: string;
-    value?: string;
-}
-declare function Checkbox({ checked: controlledChecked, defaultChecked, indeterminate, disabled, required, size, onChange, children, className, style, id, name, value, }: CheckboxProps): react_jsx_runtime.JSX.Element;
-interface CheckboxOption {
-    label: React.ReactNode;
-    value: string;
-    disabled?: boolean;
-}
-interface CheckboxGroupProps {
-    options?: CheckboxOption[];
-    value?: string[];
-    defaultValue?: string[];
-    onChange?: (values: string[]) => void;
-    disabled?: boolean;
-    direction?: 'horizontal' | 'vertical';
-    size?: CheckboxSize;
-    className?: string;
-}
-declare function CheckboxGroup({ options, value: controlledValue, defaultValue, onChange, disabled, direction, size, className, }: CheckboxGroupProps): react_jsx_runtime.JSX.Element;
-
-type RadioSize = 'small' | 'default' | 'large';
-interface RadioProps {
-    checked?: boolean;
-    defaultChecked?: boolean;
-    disabled?: boolean;
-    value?: string;
-    name?: string;
-    onChange?: (value: string) => void;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Radio({ checked: controlledChecked, defaultChecked, disabled, value, name, onChange, children, className, style, }: RadioProps): react_jsx_runtime.JSX.Element;
-interface RadioOption {
-    label: React.ReactNode;
-    value: string;
-    disabled?: boolean;
-}
-interface RadioGroupProps {
-    options?: RadioOption[];
-    value?: string;
-    defaultValue?: string;
-    onChange?: (value: string) => void;
-    disabled?: boolean;
-    direction?: 'horizontal' | 'vertical';
-    className?: string;
-    name?: string;
-}
-declare function RadioGroup({ options, value: controlled, defaultValue, onChange, disabled, direction, className, name, }: RadioGroupProps): react_jsx_runtime.JSX.Element;
-type RadioButtonStyle = 'outlined' | 'solid';
-type RadioButtonPosition = 'first' | 'center' | 'last' | 'only';
-interface RadioButtonProps {
-    value?: string;
-    checked?: boolean;
-    disabled?: boolean;
-    size?: RadioSize;
-    btnStyle?: RadioButtonStyle;
-    position?: RadioButtonPosition;
-    onChange?: (value: string) => void;
-    children?: React.ReactNode;
-}
-declare function RadioButton({ value, checked, disabled, size, btnStyle, position, onChange, children, }: RadioButtonProps): react_jsx_runtime.JSX.Element;
-interface RadioGroupButtonsProps {
-    options?: RadioOption[];
-    value?: string;
-    defaultValue?: string;
-    onChange?: (value: string) => void;
-    disabled?: boolean;
-    size?: RadioSize;
-    btnStyle?: RadioButtonStyle;
-    className?: string;
-}
-declare function RadioGroupButtons({ options, value: controlled, defaultValue, onChange, disabled, size, btnStyle, className, }: RadioGroupButtonsProps): react_jsx_runtime.JSX.Element;
-
-type SwitchSize = 'default' | 'small';
-interface SwitchProps {
-    checked?: boolean;
-    defaultChecked?: boolean;
-    disabled?: boolean;
-    loading?: boolean;
-    size?: SwitchSize;
-    checkedChildren?: React.ReactNode;
-    unCheckedChildren?: React.ReactNode;
-    onChange?: (checked: boolean) => void;
-    className?: string;
-    style?: React.CSSProperties;
-    'aria-label'?: string;
-}
-declare function Switch({ checked: controlledChecked, defaultChecked, disabled, loading, size, checkedChildren, unCheckedChildren, onChange, className, style, 'aria-label': ariaLabel, }: SwitchProps): react_jsx_runtime.JSX.Element;
-
-type AlertType = 'success' | 'info' | 'warning' | 'error';
-interface AlertProps {
-    type?: AlertType;
-    message: React.ReactNode;
-    description?: React.ReactNode;
-    banner?: boolean;
-    closable?: boolean;
-    showIcon?: boolean;
-    icon?: React.ReactNode;
-    onClose?: () => void;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Alert({ type, message, description, banner, closable, showIcon, icon, onClose, className, style, }: AlertProps): react_jsx_runtime.JSX.Element | null;
-
-interface PaginationProps {
-    current?: number;
-    defaultCurrent?: number;
-    total?: number;
-    pageSize?: number;
-    defaultPageSize?: number;
-    showSizeChanger?: boolean;
-    showQuickJumper?: boolean;
-    showTotal?: boolean | ((total: number, range: [number, number]) => React.ReactNode);
-    disabled?: boolean;
-    mini?: boolean;
-    onChange?: (page: number, pageSize: number) => void;
-    onShowSizeChange?: (current: number, size: number) => void;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Pagination({ current: controlledCurrent, defaultCurrent, total, pageSize: controlledPageSize, defaultPageSize, showSizeChanger, showQuickJumper, showTotal, disabled, mini, onChange, onShowSizeChange, className, style, }: PaginationProps): react_jsx_runtime.JSX.Element;
-
-type StepStatus = 'finish' | 'process' | 'wait' | 'error';
-type StepsDirection = 'horizontal' | 'vertical';
-type StepsSize = 'default' | 'small';
-interface StepItem {
-    title: React.ReactNode;
-    description?: React.ReactNode;
-    icon?: React.ReactNode;
-    disabled?: boolean;
-    status?: StepStatus;
-    subTitle?: React.ReactNode;
-}
-interface StepsProps {
-    current?: number;
-    direction?: StepsDirection;
-    size?: StepsSize;
-    status?: StepStatus;
-    items?: StepItem[];
-    onChange?: (current: number) => void;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Steps({ current, direction, size, status, items, onChange, className, style, }: StepsProps): react_jsx_runtime.JSX.Element;
-
-type TabsType = 'line' | 'card';
-type TabsSize = 'large' | 'default' | 'small';
-type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
-interface TabItem {
-    key: string;
-    label: React.ReactNode;
-    children?: React.ReactNode;
-    disabled?: boolean;
-    icon?: React.ReactNode;
-    closable?: boolean;
-}
-interface TabsProps {
-    activeKey?: string;
-    defaultActiveKey?: string;
-    type?: TabsType;
-    size?: TabsSize;
-    tabPosition?: TabsPosition;
-    items?: TabItem[];
-    onChange?: (key: string) => void;
-    onEdit?: (key: string, action: 'remove') => void;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Tabs({ activeKey: controlledActiveKey, defaultActiveKey, type, size, tabPosition, items, onChange, onEdit, className, style, }: TabsProps): react_jsx_runtime.JSX.Element;
-
-type BadgeStatus = 'success' | 'processing' | 'default' | 'error' | 'warning';
-interface BadgeProps {
-    count?: number;
-    dot?: boolean;
-    status?: BadgeStatus;
-    color?: string;
-    text?: React.ReactNode;
-    showZero?: boolean;
-    overflowCount?: number;
-    offset?: [number, number];
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Badge({ count, dot, status, color, text, showZero, overflowCount, offset, children, className, style, }: BadgeProps): react_jsx_runtime.JSX.Element | null;
-
-type AvatarSize = 'large' | 'default' | 'small' | number;
-type AvatarShape = 'circle' | 'square';
-interface AvatarProps {
-    size?: AvatarSize;
-    shape?: AvatarShape;
-    src?: string;
-    alt?: string;
-    icon?: React.ReactNode;
-    children?: React.ReactNode;
-    style?: React.CSSProperties;
-    className?: string;
-}
-interface AvatarGroupProps {
-    maxCount?: number;
-    maxStyle?: React.CSSProperties;
-    size?: AvatarSize;
-    shape?: AvatarShape;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Avatar({ size, shape, src, alt, icon, children, style, className, }: AvatarProps): react_jsx_runtime.JSX.Element;
-declare function AvatarGroup({ maxCount, maxStyle, size, shape, children, className, style, }: AvatarGroupProps): react_jsx_runtime.JSX.Element;
-
-interface BreadcrumbItem {
-    title: React.ReactNode;
-    href?: string;
-    onClick?: (e: React.MouseEvent) => void;
-    icon?: React.ReactNode;
-    disabled?: boolean;
-}
-interface BreadcrumbProps {
-    items?: BreadcrumbItem[];
-    separator?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Breadcrumb({ items, separator, className, style, }: BreadcrumbProps): react_jsx_runtime.JSX.Element;
-
-type ProgressType = 'line' | 'circle' | 'dashboard';
-type ProgressStatus = 'normal' | 'active' | 'success' | 'exception';
-interface ProgressProps {
-    percent?: number;
-    type?: ProgressType;
-    status?: ProgressStatus;
-    showInfo?: boolean;
-    strokeColor?: string;
-    trailColor?: string;
-    strokeWidth?: number;
-    size?: 'default' | 'small';
-    width?: number;
-    format?: (percent?: number) => React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Progress({ percent, type, status, showInfo, strokeColor, trailColor, strokeWidth, size, width, format, className, style, }: ProgressProps): react_jsx_runtime.JSX.Element;
-
-type SpinSize = 'small' | 'default' | 'large';
-interface SpinProps {
-    spinning?: boolean;
-    size?: SpinSize;
-    tip?: React.ReactNode;
-    delay?: number;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Spin({ spinning, size, tip, children, className, style, }: SpinProps): react_jsx_runtime.JSX.Element | null;
-
-type DrawerPlacement = 'right' | 'left' | 'top' | 'bottom';
-type DrawerSize = 'default' | 'large';
-interface DrawerProps {
-    open?: boolean;
-    placement?: DrawerPlacement;
-    size?: DrawerSize;
-    width?: number | string;
-    height?: number | string;
-    title?: React.ReactNode;
-    footer?: React.ReactNode;
-    closable?: boolean;
-    maskClosable?: boolean;
-    mask?: boolean;
-    onClose?: () => void;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-    bodyStyle?: React.CSSProperties;
-}
-declare function Drawer({ open, placement, size, width, height, title, footer, closable, maskClosable, mask, onClose, children, className, style, bodyStyle, }: DrawerProps): react_jsx_runtime.JSX.Element | null;
-
-type NotificationType = 'success' | 'info' | 'warning' | 'error';
-type NotificationPlacement = 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft';
-interface NotificationItem {
-    key: string;
-    type?: NotificationType;
-    message: React.ReactNode;
-    description?: React.ReactNode;
-    icon?: React.ReactNode;
-    duration?: number;
-    closable?: boolean;
-    btn?: React.ReactNode;
-    onClose?: () => void;
-}
-interface NotificationContainerProps {
-    items?: NotificationItem[];
-    placement?: NotificationPlacement;
-    onClose?: (key: string) => void;
-    style?: React.CSSProperties;
-}
-declare function NotificationContainer({ items, placement, onClose, style, }: NotificationContainerProps): react_jsx_runtime.JSX.Element | null;
-
-type TooltipPlacement = 'top' | 'topLeft' | 'topRight' | 'bottom' | 'bottomLeft' | 'bottomRight' | 'left' | 'leftTop' | 'leftBottom' | 'right' | 'rightTop' | 'rightBottom';
-interface TooltipProps {
-    title?: React.ReactNode;
-    placement?: TooltipPlacement;
-    open?: boolean;
-    defaultOpen?: boolean;
-    disabled?: boolean;
-    color?: string;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Tooltip({ title, placement, open: controlledOpen, defaultOpen, disabled, color, children, className, style, }: TooltipProps): react_jsx_runtime.JSX.Element;
-
-type DividerType = 'horizontal' | 'vertical';
-type DividerOrientation = 'left' | 'center' | 'right';
-interface DividerProps {
-    type?: DividerType;
-    orientation?: DividerOrientation;
-    dashed?: boolean;
-    plain?: boolean;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Divider({ type, orientation, dashed, plain, children, className, style, }: DividerProps): react_jsx_runtime.JSX.Element;
-
-type SelectSize = 'small' | 'default' | 'large';
+type SelectSize = 'small' | 'middle' | 'large';
 type SelectStatus = '' | 'error' | 'warning';
 type SelectVariant = 'outlined' | 'filled' | 'borderless';
-type SelectMode = 'default' | 'multiple' | 'tags';
-interface SelectOption {
-    label: React.ReactNode;
-    value: string;
-    disabled?: boolean;
-}
-interface SelectOptionGroup {
-    label: React.ReactNode;
-    options: SelectOption[];
-}
-interface SelectProps {
-    value?: string | string[];
-    defaultValue?: string | string[];
-    placeholder?: string;
-    options?: (SelectOption | SelectOptionGroup)[];
-    mode?: SelectMode;
+interface SelectProps<T = string> extends Omit<SelectProps$1<T>, 'size' | 'status' | 'variant'> {
     size?: SelectSize;
     status?: SelectStatus;
     variant?: SelectVariant;
-    disabled?: boolean;
-    allowClear?: boolean;
-    showSearch?: boolean;
-    loading?: boolean;
+}
+declare function Select<T = string>({ size, status, variant, ...rest }: SelectProps<T>): react_jsx_runtime.JSX.Element;
+declare namespace Select {
+    var Option: _rc_component_select_lib_Option.OptionFC;
+    var OptGroup: _rc_component_select_lib_OptGroup.OptionGroupFC;
+}
+
+type AlertType = 'success' | 'info' | 'warning' | 'error';
+
+interface ModalProps extends ModalProps$1 {
+}
+type ModalStatusType = 'success' | 'error' | 'warning' | 'info';
+interface ModalInformationProps {
     open?: boolean;
-    onChange?: (value: string | string[]) => void;
-    onSearch?: (value: string) => void;
-    onDropdownVisibleChange?: (open: boolean) => void;
-    className?: string;
-    style?: React.CSSProperties;
-    dropdownStyle?: React.CSSProperties;
+    status: ModalStatusType;
+    title: React__default.ReactNode;
+    description?: React__default.ReactNode;
+    okText?: string;
+    cancelText?: string;
+    onOk?: () => void;
+    onCancel?: () => void;
 }
-declare function Select({ value: controlledValue, defaultValue, placeholder, options, mode, size, status, variant, disabled, allowClear, showSearch, loading, open: controlledOpen, onChange, onSearch, onDropdownVisibleChange, className, style, dropdownStyle, }: SelectProps): react_jsx_runtime.JSX.Element;
+declare const ModalInformation: React__default.FC<ModalInformationProps>;
+interface ModalConfirmationProps {
+    open?: boolean;
+    title: React__default.ReactNode;
+    description?: React__default.ReactNode;
+    okText?: string;
+    cancelText?: string;
+    danger?: boolean;
+    onOk?: () => void;
+    onCancel?: () => void;
+}
+declare const ModalConfirmation: React__default.FC<ModalConfirmationProps>;
+declare const Modal: React__default.FC<ModalProps> & {
+    confirm: typeof Modal$1.confirm;
+    info: typeof Modal$1.info;
+    success: typeof Modal$1.success;
+    warning: typeof Modal$1.warning;
+    error: typeof Modal$1.error;
+    destroyAll: typeof Modal$1.destroyAll;
+};
 
-type SegmentedSize = 'large' | 'default' | 'small';
-interface SegmentedOption {
-    label: React.ReactNode;
-    value: string;
-    disabled?: boolean;
-    icon?: React.ReactNode;
+interface TagProps extends TagProps$1 {
 }
-interface SegmentedProps {
-    value?: string;
-    defaultValue?: string;
-    options?: (SegmentedOption | string)[];
-    size?: SegmentedSize;
-    disabled?: boolean;
-    block?: boolean;
-    onChange?: (value: string) => void;
-    className?: string;
-    style?: React.CSSProperties;
+type TagStatusColor = 'success' | 'processing' | 'error' | 'warning' | 'default';
+interface TagStatusProps {
+    status: TagStatusColor;
+    text?: React__default.ReactNode;
 }
-declare function Segmented({ value: controlledValue, defaultValue, options, size, disabled, block, onChange, className, style, }: SegmentedProps): react_jsx_runtime.JSX.Element;
+declare const Tag: React__default.FC<TagProps> & {
+    CheckableTag: typeof Tag$1.CheckableTag;
+};
+declare const TagStatus: React__default.FC<TagStatusProps>;
 
-interface EmptyProps {
-    image?: React.ReactNode | 'default' | 'simple';
-    imageStyle?: React.CSSProperties;
-    description?: React.ReactNode;
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare const EMPTY_IMAGE_DEFAULT: "default";
-declare const EMPTY_IMAGE_SIMPLE: "simple";
-declare function Empty({ image, imageStyle, description, children, className, style, }: EmptyProps): react_jsx_runtime.JSX.Element;
+type AvatarSize = 'large' | 'small' | 'default' | number;
+type AvatarShape = 'circle' | 'square';
+declare const AvatarGroup: React$1.FC<antd_es_avatar_AvatarGroup.AvatarGroupProps>;
 
-interface SkeletonAvatarProps {
-    size?: 'large' | 'default' | 'small' | number;
-    shape?: 'circle' | 'square';
-    style?: React.CSSProperties;
+type BadgeStatus = 'success' | 'processing' | 'default' | 'error' | 'warning';
+declare const BadgeRibbon: React$1.FC<antd_es_badge.RibbonProps>;
+
+type MenuMode = 'horizontal' | 'vertical' | 'inline';
+type MenuTheme = 'light' | 'dark';
+interface MenuTopNavigationProps extends Omit<MenuProps, 'mode'> {
 }
-declare function SkeletonAvatar({ size, shape, style }: SkeletonAvatarProps): react_jsx_runtime.JSX.Element;
-interface SkeletonInputProps {
-    size?: 'large' | 'default' | 'small';
-    block?: boolean;
-    active?: boolean;
-    style?: React.CSSProperties;
+declare const MenuTopNavigation: React__default.FC<MenuTopNavigationProps>;
+
+type TabsType = 'line' | 'card' | 'editable-card';
+type TabsSize = 'large' | 'default' | 'small';
+type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
+
+type CheckboxSize = 'small' | 'middle' | 'large';
+declare const CheckboxGroup: <T = any>(props: CheckboxGroupProps<T> & React.RefAttributes<HTMLDivElement>) => React.ReactElement;
+
+declare const RadioGroup: React__default.NamedExoticComponent<RadioGroupProps & React__default.RefAttributes<HTMLDivElement>>;
+declare const RadioButton: React__default.ForwardRefExoticComponent<antd_es_radio_radioButton.RadioButtonProps & React__default.RefAttributes<antd.CheckboxRef>>;
+interface RadioGroupButtonsProps extends Omit<RadioGroupProps, 'optionType'> {
+    btnStyle?: 'outline' | 'solid';
 }
-declare function SkeletonInput({ size, block, style }: SkeletonInputProps): react_jsx_runtime.JSX.Element;
-interface SkeletonButtonProps {
-    size?: 'large' | 'default' | 'small';
-    block?: boolean;
-    shape?: 'default' | 'circle' | 'round';
-    style?: React.CSSProperties;
-}
-declare function SkeletonButton({ size, block, shape, style }: SkeletonButtonProps): react_jsx_runtime.JSX.Element;
-interface SkeletonImageProps {
-    style?: React.CSSProperties;
-}
-declare function SkeletonImage({ style }: SkeletonImageProps): react_jsx_runtime.JSX.Element;
-interface SkeletonProps {
-    loading?: boolean;
-    active?: boolean;
-    avatar?: boolean | SkeletonAvatarProps;
-    title?: boolean | {
-        width?: number | string;
-    };
-    paragraph?: boolean | {
-        rows?: number;
-        width?: (number | string)[];
-    };
-    children?: React.ReactNode;
+declare const RadioGroupButtons: React__default.FC<RadioGroupButtonsProps>;
+
+type SwitchSize = 'default' | 'small';
+
+type SegmentedSize = 'large' | 'middle' | 'small';
+type SegmentedOption = NonNullable<SegmentedProps['options']>[number];
+
+type StepStatus = 'wait' | 'process' | 'finish' | 'error';
+type StepsDirection = 'horizontal' | 'vertical';
+type StepsSize = 'default' | 'small';
+type StepItem = NonNullable<StepsProps['items']>[number];
+
+type BreadcrumbItem = NonNullable<BreadcrumbProps['items']>[number];
+
+type ProgressType = 'line' | 'circle' | 'dashboard';
+type ProgressStatus = 'success' | 'exception' | 'normal' | 'active';
+
+type SpinSize = 'small' | 'default' | 'large';
+
+type DrawerPlacement = 'top' | 'right' | 'bottom' | 'left';
+type DrawerSize = 'default' | 'large';
+
+type TooltipPlacement = TooltipProps['placement'];
+
+type DividerType = 'horizontal' | 'vertical';
+type DividerOrientation = 'left' | 'right' | 'center';
+
+declare const EMPTY_IMAGE_DEFAULT: React$1.ReactNode;
+declare const EMPTY_IMAGE_SIMPLE: React$1.ReactNode;
+
+declare const SkeletonAvatar: React$1.FC<antd_es_skeleton_Avatar.AvatarProps>;
+declare const SkeletonButton: React$1.FC<antd_es_skeleton_Button.SkeletonButtonProps>;
+declare const SkeletonInput: React$1.FC<antd_es_skeleton_Input.SkeletonInputProps>;
+declare const SkeletonImage: React$1.FC<antd_es_skeleton_Image.SkeletonImageProps>;
+declare const SkeletonNode: React$1.FC<antd_es_skeleton_Node.SkeletonNodeProps>;
+
+type NotificationType = 'success' | 'info' | 'warning' | 'error';
+type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'top' | 'bottom';
+
+declare const Title: React$1.ForwardRefExoticComponent<antd_es_typography_Title.TitleProps & React$1.RefAttributes<HTMLElement>>;
+declare const Text: React$1.ForwardRefExoticComponent<antd_es_typography_Text.TextProps & React$1.RefAttributes<HTMLSpanElement>>;
+declare const Link: React$1.ForwardRefExoticComponent<antd_es_typography_Link.LinkProps & React$1.RefAttributes<HTMLElement>>;
+declare const Paragraph: React$1.ForwardRefExoticComponent<antd_es_typography_Paragraph.ParagraphProps & React$1.RefAttributes<HTMLElement>>;
+
+type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
+declare function resolveSize(size: IconSize): number;
+interface TablerIconProps {
+    size?: IconSize;
+    color?: string;
+    stroke?: number;
     className?: string;
-    style?: React.CSSProperties;
+    style?: React__default.CSSProperties;
 }
-declare function Skeleton({ loading, avatar, title, paragraph, children, className, style, }: SkeletonProps): react_jsx_runtime.JSX.Element;
+interface IconProps extends TablerIconProps {
+    icon: React__default.FC<TablerIconProps>;
+}
+declare const Icon: React__default.FC<IconProps>;
 
 type LoginState = 'idle' | 'typing' | 'error-empty' | 'error-email' | 'error-wrong' | 'error-locked' | 'loading' | 'success' | 'forgot' | 'forgot-sent';
 interface LoginPageProps {
@@ -999,27 +551,4 @@ interface LoginPageProps {
 declare function LoginPage({ onSuccess, logoSrc, appName, initialState }: LoginPageProps): react_jsx_runtime.JSX.Element;
 declare function LoginPageGallery(): react_jsx_runtime.JSX.Element;
 
-interface IconProps {
-    /** Any @tabler/icons-react component */
-    icon: React.ComponentType<TablerIconProps>;
-    /** px — default 24 */
-    size?: number;
-    /** CSS color — default currentColor */
-    color?: string;
-    /** SVG stroke-width — default 2 */
-    strokeWidth?: number;
-    className?: string;
-    style?: React.CSSProperties;
-}
-interface TablerIconProps {
-    size?: number;
-    color?: string;
-    stroke?: number;
-    className?: string;
-    style?: React.CSSProperties;
-}
-declare function Icon({ icon: TablerIcon, size, color, strokeWidth, className, style, }: IconProps): react_jsx_runtime.JSX.Element;
-type IconSize = 'sm' | 'md' | 'lg' | number;
-declare function resolveSize(s: IconSize): number;
-
-export { Alert, type AlertProps, type AlertType, Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps, type AvatarShape, type AvatarSize, Badge, type BadgeProps, type BadgeStatus, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonContent, type ButtonProps, type ButtonSize, type ButtonType, type CellAlignment, Checkbox, CheckboxGroup, type CheckboxGroupProps, type CheckboxOption, type CheckboxProps, type CheckboxSize, Code, type CodeProps, Divider, type DividerOrientation, type DividerProps, type DividerType, Drawer, type DrawerPlacement, type DrawerProps, type DrawerSize, EMPTY_IMAGE_DEFAULT, EMPTY_IMAGE_SIMPLE, Empty, type EmptyProps, Icon, type IconProps, type IconSize, type InformationStatus, Input, type InputProps, type InputSize, type InputStatus, Link, type LinkProps, LoginPage, LoginPageGallery, type LoginPageProps, type LoginState, Menu, type MenuGroupData, type MenuItemData, type MenuMode, type MenuProps, type MenuTheme, MenuTopNavigation, type MenuTopNavigationProps, Modal, ModalConfirmation, type ModalConfirmationProps, ModalInformation, type ModalInformationProps, type ModalProps, NotificationContainer, type NotificationContainerProps, type NotificationItem, type NotificationPlacement, type NotificationType, Pagination, type PaginationProps, Paragraph, type ParagraphProps, Progress, type ProgressProps, type ProgressStatus, type ProgressType, Radio, RadioButton, type RadioButtonPosition, type RadioButtonProps, type RadioButtonStyle, RadioGroup, RadioGroupButtons, type RadioGroupButtonsProps, type RadioGroupProps, type RadioOption, type RadioProps, type RadioSize, Segmented, type SegmentedOption, type SegmentedProps, type SegmentedSize, Select, type SelectMode, type SelectOption, type SelectOptionGroup, type SelectProps, type SelectSize, type SelectStatus, type SelectVariant, Skeleton, SkeletonAvatar, type SkeletonAvatarProps, SkeletonButton, type SkeletonButtonProps, SkeletonImage, type SkeletonImageProps, SkeletonInput, type SkeletonInputProps, type SkeletonProps, type SortOrder, Spin, type SpinProps, type SpinSize, type StepItem, type StepStatus, Steps, type StepsDirection, type StepsProps, type StepsSize, Switch, type SwitchProps, type SwitchSize, type TabItem, Table, type TableColumn, type TableProps, type TablerIconProps, Tabs, type TabsPosition, type TabsProps, type TabsSize, type TabsType, Tag, type TagColor, type TagProps, TagStatus, type TagStatusColor, type TagStatusProps, Text, type TextProps, type TextSize, type TextStyle, type TextType, Title, type TitleLevel, type TitleProps, type Tokens, Tooltip, type TooltipPlacement, type TooltipProps, type TopNavItemData, borderRadius, colorNeutral, colorNeutralDark, colorPrimary, colorSemantic, controlHeight, darkPalette, fontFamily, fontSize, fontWeight, gray, lineHeight, palette, resolveSize, shadow, spacing, tokens };
+export { AestetiXProvider, type AestetiXProviderProps, type AlertType, AvatarGroup, type AvatarShape, type AvatarSize, BadgeRibbon, type BadgeStatus, type BreadcrumbItem, Button, type ButtonProps, type ButtonShape, type ButtonSize, type ButtonType, CheckboxGroup, type CheckboxSize, type DividerOrientation, type DividerType, type DrawerPlacement, type DrawerSize, EMPTY_IMAGE_DEFAULT, EMPTY_IMAGE_SIMPLE, Icon, type IconProps, type IconSize, Input, InputPassword, type InputProps, InputSearch, type InputSize, type InputStatus, Link, LoginPage, LoginPageGallery, type LoginPageProps, type LoginState, type MenuMode, type MenuTheme, MenuTopNavigation, type MenuTopNavigationProps, Modal, ModalConfirmation, type ModalConfirmationProps, ModalInformation, type ModalInformationProps, type ModalProps, type ModalStatusType, type NotificationPlacement, type NotificationType, Paragraph, type ProgressStatus, type ProgressType, RadioButton, RadioGroup, RadioGroupButtons, type RadioGroupButtonsProps, type SegmentedOption, type SegmentedSize, Select, type SelectProps, type SelectSize, type SelectStatus, type SelectVariant, SkeletonAvatar, SkeletonButton, SkeletonImage, SkeletonInput, SkeletonNode, type SpinSize, type StepItem, type StepStatus, type StepsDirection, type StepsSize, type SwitchSize, type TablerIconProps, type TabsPosition, type TabsSize, type TabsType, Tag, type TagProps, TagStatus, type TagStatusColor, type TagStatusProps, Text, TextArea, Title, type Tokens, type TooltipPlacement, aesthetixTheme, borderRadius, colorNeutral, colorNeutralDark, colorPrimary, colorSemantic, controlHeight, darkPalette, fontFamily, fontSize, fontWeight, gray, lineHeight, palette, resolveSize, shadow, spacing, tokens };

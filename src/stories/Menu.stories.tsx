@@ -43,15 +43,14 @@ const meta: Meta<typeof Menu> = {
       options: ['light', 'dark'],
       description: 'ערכת צבעים',
     },
-    collapsed: { control: 'boolean', description: 'מכווץ' },
-    defaultActiveKey: { control: 'text', description: 'פריט פעיל ברירת מחדל' },
+    inlineCollapsed: { control: 'boolean', description: 'מכווץ' },
   },
   args: {
     mode: 'inline',
     theme: 'light',
-    collapsed: false,
+    inlineCollapsed: false,
     items: sampleItems,
-    defaultActiveKey: 'home',
+    defaultSelectedKeys: ['home'],
   },
 };
 
@@ -72,18 +71,7 @@ export const Dark: Story = {
 };
 
 export const Collapsed: Story = {
-  args: { collapsed: true },
-};
-
-export const CollapsedDark: Story = {
-  args: { collapsed: true, theme: 'dark' },
-  decorators: [
-    (Story) => (
-      <div dir="rtl" style={{ fontFamily: '"Heebo", sans-serif', background: '#141414', padding: 16 }}>
-        <Story />
-      </div>
-    ),
-  ],
+  args: { inlineCollapsed: true },
 };
 
 export const WithGroups: Story = {
@@ -91,6 +79,7 @@ export const WithGroups: Story = {
     items: [
       {
         key: 'group-main',
+        type: 'group',
         label: 'ראשי',
         children: [
           { key: 'home', label: 'בית', icon: <IconHome size={16} /> },
@@ -99,6 +88,7 @@ export const WithGroups: Story = {
       },
       {
         key: 'group-settings',
+        type: 'group',
         label: 'הגדרות',
         children: [
           { key: 'profile', label: 'פרופיל', icon: <IconUser size={16} /> },
@@ -106,14 +96,14 @@ export const WithGroups: Story = {
         ],
       },
     ],
-    defaultActiveKey: 'home',
+    defaultSelectedKeys: ['home'],
   },
 };
 
 export const TopNavigation: Story = {
   render: () => (
     <MenuTopNavigation
-      defaultActiveKey="home"
+      defaultSelectedKeys={['home']}
       items={[
         { key: 'home', label: 'בית', icon: <IconHome size={16} /> },
         { key: 'products', label: 'מוצרים' },
@@ -131,7 +121,7 @@ export const TopNavigationDark: Story = {
     <div style={{ background: '#141414', padding: '0 16px' }}>
       <MenuTopNavigation
         theme="dark"
-        defaultActiveKey="home"
+        defaultSelectedKeys={['home']}
         items={[
           { key: 'home', label: 'בית' },
           { key: 'products', label: 'מוצרים' },

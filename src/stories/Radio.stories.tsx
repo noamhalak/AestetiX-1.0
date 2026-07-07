@@ -73,16 +73,14 @@ export const GroupHorizontal: Story = {
 
 export const GroupVertical: Story = {
   render: () => (
-    <RadioGroup
-      defaultValue="daily"
-      direction="vertical"
-      options={[
-        { label: 'יומי', value: 'daily' },
-        { label: 'שבועי', value: 'weekly' },
-        { label: 'חודשי', value: 'monthly' },
-        { label: 'שנתי', value: 'yearly' },
-      ]}
-    />
+    <RadioGroup defaultValue="daily">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Radio value="daily">יומי</Radio>
+        <Radio value="weekly">שבועי</Radio>
+        <Radio value="monthly">חודשי</Radio>
+        <Radio value="yearly">שנתי</Radio>
+      </div>
+    </RadioGroup>
   ),
   parameters: { controls: { disable: true } },
 };

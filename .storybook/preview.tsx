@@ -1,12 +1,15 @@
 import type { Preview } from '@storybook/react-vite';
 import React from 'react';
+import { AestetiXProvider } from '../src/components/Provider/AestetiXProvider';
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <div dir="rtl" style={{ fontFamily: "'Heebo', 'Inter', sans-serif", padding: '24px' }}>
-        <Story />
-      </div>
+      <AestetiXProvider>
+        <div style={{ padding: '24px' }}>
+          <Story />
+        </div>
+      </AestetiXProvider>
     ),
   ],
   parameters: {

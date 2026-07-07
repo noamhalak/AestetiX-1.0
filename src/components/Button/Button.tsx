@@ -6,24 +6,10 @@ export type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link';
 export type ButtonSize = 'small' | 'middle' | 'large';
 export type ButtonShape = 'default' | 'circle' | 'round';
 
-export interface ButtonProps extends Omit<AntButtonProps, 'type' | 'size' | 'shape'> {
-  btnType?: ButtonType;
-  size?: ButtonSize;
-  shape?: ButtonShape;
-}
+export interface ButtonProps extends AntButtonProps {}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ btnType = 'default', size = 'middle', shape = 'default', ...rest }, ref) => {
-    return (
-      <AntButton
-        ref={ref}
-        type={btnType}
-        size={size}
-        shape={shape}
-        {...rest}
-      />
-    );
-  },
+  (props, ref) => <AntButton ref={ref} {...props} />,
 );
 
 Button.displayName = 'Button';

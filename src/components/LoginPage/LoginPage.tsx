@@ -210,7 +210,7 @@ function LoginForm({
             </div>
           </div>
           <Alert type="error" message="יש לאפס סיסמה או לפנות לתמיכה" showIcon />
-          <Button btnType="default" block onClick={() => { setState('forgot'); setAttempts(0); }}>
+          <Button type="default" block onClick={() => { setState('forgot'); setAttempts(0); }}>
             אפס סיסמה
           </Button>
           <Link onClick={() => { setState('idle'); setAttempts(0); setEmail(''); setPassword(''); }}>
@@ -326,14 +326,14 @@ function LoginForm({
         {/* Remember me */}
         <Checkbox
           checked={rememberMe}
-          onChange={setRememberMe}
+          onChange={(e) => setRememberMe(e.target.checked)}
         >
           זכור אותי
         </Checkbox>
 
         {/* Submit */}
         <Button
-          btnType="primary"
+          type="primary"
           size="large"
           block
           loading={state === 'loading'}
@@ -349,7 +349,7 @@ function LoginForm({
       {/* Social logins */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         <Button
-          btnType="default"
+          type="default"
           size="large"
           block
           icon={
@@ -365,7 +365,7 @@ function LoginForm({
         </Button>
 
         <Button
-          btnType="default"
+          type="default"
           size="large"
           block
           icon={
@@ -423,7 +423,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
             message="הקישור בתוקף ל-30 דקות"
             showIcon
           />
-          <Button btnType="primary" block onClick={onBack}>
+          <Button type="primary" block onClick={onBack}>
             חזור להתחברות
           </Button>
           <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)' }}>
@@ -469,7 +469,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
         </div>
 
         <Button
-          btnType="primary"
+          type="primary"
           size="large"
           block
           loading={loading}
@@ -635,7 +635,7 @@ function ForgotSentPreview() {
           </div>
         </div>
         <Alert type="info" message="הקישור בתוקף ל-30 דקות" showIcon />
-        <Button btnType="primary" block>חזור להתחברות</Button>
+        <Button type="primary" block>חזור להתחברות</Button>
         <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)' }}>
           לא קיבלת? <Link style={{ fontSize: '14px' }} onClick={() => setSent(false)}>שלח שוב</Link>
         </div>
