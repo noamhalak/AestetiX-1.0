@@ -1,0 +1,1 @@
+import{i as e,s as t}from"./preload-helper-Cs4UwXAW.js";import{at as n,b as r,n as i,t as a}from"./iframe-COCI6Ql1.js";var o,s,c,l=e((()=>{o=t(n()),i(),s=a(),c=o.forwardRef((e,t)=>(0,s.jsx)(r,{ref:t,...e})),c.displayName=`Button`,c.__docgenInfo={description:``,methods:[],displayName:`Button`,composes:[`AntButtonProps`]}}));export{l as n,c as t};
