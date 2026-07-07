@@ -1,74 +1,44 @@
 import React from 'react';
 
-// ─────────────────────────────────────────────────────────────────
-//  Icon — AestetiX 1.0
-//  Figma page: ✅ Tabler (node 71670-7730)
-//  Wraps @tabler/icons-react with design-system defaults.
-//
-//  Usage:
-//    import { Icon } from '@/design-system';
-//    import { IconHome } from '@tabler/icons-react';
-//
-//    <Icon icon={IconHome} />
-//    <Icon icon={IconHome} size={20} color="#1677ff" strokeWidth={1.5} />
-// ─────────────────────────────────────────────────────────────────
+export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
 
-export interface IconProps {
-  /** Any @tabler/icons-react component */
-  icon: React.ComponentType<TablerIconProps>;
-  /** px — default 24 */
-  size?: number;
-  /** CSS color — default currentColor */
-  color?: string;
-  /** SVG stroke-width — default 2 */
-  strokeWidth?: number;
-  className?: string;
-  style?: React.CSSProperties;
+const sizeMap: Record<string, number> = {
+  xs: 12, sm: 16, md: 20, lg: 24, xl: 32,
+};
+
+export function resolveSize(size: IconSize): number {
+  if (typeof size === 'number') return size;
+  return sizeMap[size] ?? 20;
 }
 
 export interface TablerIconProps {
-  size?: number;
+  size?: IconSize;
   color?: string;
   stroke?: number;
   className?: string;
   style?: React.CSSProperties;
 }
 
-export function Icon({
-  icon: TablerIcon,
-  size = 24,
-  color = 'currentColor',
-  strokeWidth = 2,
+export interface IconProps extends TablerIconProps {
+  icon: React.FC<TablerIconProps>;
+}
+
+export const Icon: React.FC<IconProps> = ({
+  icon: IconComponent,
+  size = 'md',
+  color,
+  stroke = 2,
   className,
   style,
-}: IconProps) {
+}) => {
+  const resolvedSize = resolveSize(size);
   return (
-    <TablerIcon
-      size={size}
+    <IconComponent
+      size={resolvedSize}
       color={color}
-      stroke={strokeWidth}
+      stroke={stroke}
       className={className}
       style={style}
     />
   );
-}
-
-// ─────────────────────────────────────────────────────────────────
-//  Convenience re-export: commonly used Tabler icons with AestetiX
-//  defaults applied. Import the raw icon from @tabler/icons-react
-//  if you need full control.
-// ─────────────────────────────────────────────────────────────────
-
-export type IconSize = 'sm' | 'md' | 'lg' | number;
-
-const SIZE_MAP: Record<'sm' | 'md' | 'lg', number> = {
-  sm: 16,
-  md: 20,
-  lg: 24,
 };
-
-export function resolveSize(s: IconSize): number {
-  return typeof s === 'number' ? s : SIZE_MAP[s];
-}
-
-export default Icon;
