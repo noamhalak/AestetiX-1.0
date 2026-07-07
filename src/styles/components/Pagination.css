@@ -1,0 +1,78 @@
+/* ── Pagination ──────────────────────────────────────────── */
+.ax-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+}
+.ax-pagination--mini { font-size: var(--ax-font-size-sm); }
+
+.ax-pagination__total {
+  color: var(--ax-color-text);
+  white-space: nowrap;
+}
+
+.ax-pagination__pages { display: inline-flex; align-items: center; gap: 4px; }
+
+.ax-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+  line-height: 1;
+  border: 1px solid var(--ax-color-border);
+  border-radius: var(--ax-border-radius);
+  background: #fff;
+  color: var(--ax-color-text);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.ax-pagination__item:hover:not(.ax-pagination__item--disabled):not(.ax-pagination__item--active) {
+  border-color: var(--ax-color-primary);
+  color: var(--ax-color-primary);
+}
+.ax-pagination__item--active  { background: var(--ax-color-primary); border-color: var(--ax-color-primary); color: #fff; }
+.ax-pagination__item--disabled { color: var(--ax-color-text-disabled); cursor: not-allowed; }
+.ax-pagination__item--dots    { border: none; cursor: default; color: var(--ax-color-text-secondary); }
+
+.ax-pagination__item--mini { min-width: 24px; height: 24px; font-size: var(--ax-font-size-sm); }
+
+.ax-pagination__sizer {
+  height: 32px;
+  padding: 0 8px;
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+  border: 1px solid var(--ax-color-border);
+  border-radius: var(--ax-border-radius);
+  cursor: pointer;
+  background: #fff;
+  color: var(--ax-color-text);
+}
+.ax-pagination__sizer--mini { height: 24px; padding: 0 4px; font-size: var(--ax-font-size-sm); }
+
+.ax-pagination__jumper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ax-color-text);
+}
+
+.ax-pagination__jumper-input {
+  width: 50px;
+  height: 32px;
+  padding: 0 6px;
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+  border: 1px solid var(--ax-color-border);
+  border-radius: var(--ax-border-radius);
+  text-align: center;
+  outline: none;
+}
+.ax-pagination__jumper-input--mini { width: 40px; height: 24px; font-size: var(--ax-font-size-sm); }

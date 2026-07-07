@@ -2,9 +2,7 @@ import React from 'react';
 
 // ─────────────────────────────────────────────────────────────────
 //  Input — AestetiX 1.0
-//  Figma page: ❖ Input - ✅ 🎨🤖🤖 (node 4:29)
-//  Sizes: SM (24px) | default (32px) | large (40px)
-//  States: default | hover | focus | disabled | error | warning
+//  Fix: CSS classes, aria-invalid, aria-required
 // ─────────────────────────────────────────────────────────────────
 
 export type InputSize = 'small' | 'default' | 'large';
@@ -18,30 +16,25 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   allowClear?: boolean;
   addonBefore?: React.ReactNode;
   addonAfter?: React.ReactNode;
+  required?: boolean;
+  helperText?: string;
+  label?: string;
 }
 
-const heightMap: Record<InputSize, string> = {
-  small:   'h-[24px]',
-  default: 'h-[32px]',
-  large:   'h-[40px]',
+const sizeClass: Record<InputSize, string> = {
+  small:   'ax-input--small',
+  default: '',
+  large:   'ax-input--large',
 };
-
-const paddingMap: Record<InputSize, string> = {
-  small:   'px-[7px] py-0',
-  default: 'px-[11px] py-0',
-  large:   'px-[11px] py-0',
+const fieldSizeClass: Record<InputSize, string> = {
+  small:   'ax-input__field--small',
+  default: '',
+  large:   'ax-input__field--large',
 };
-
-const fontSizeMap: Record<InputSize, string> = {
-  small:   'text-[12px] leading-[20px]',
-  default: 'text-[14px] leading-[22px]',
-  large:   'text-[16px] leading-[24px]',
-};
-
-const borderStatusMap: Record<InputStatus, string> = {
-  default: 'border-neutral-border hover:border-primary focus-within:border-primary focus-within:shadow-input',
-  error:   'border-error hover:border-error focus-within:border-error focus-within:shadow-input-error',
-  warning: 'border-warning hover:border-warning focus-within:border-warning focus-within:shadow-input-warning',
+const addonSizeClass: Record<InputSize, string> = {
+  small:   'ax-input__addon--small',
+  default: '',
+  large:   'ax-input__addon--large',
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -58,11 +51,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className = '',
       value,
       onChange,
+      required,
+      helperText,
+      label,
+      id,
+      'aria-describedby': ariaDescribedBy,
       ...rest
     },
     ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(value ?? '');
+    const helperId = helperText && id ? `${id}-helper` : undefined;
 
     React.useEffect(() => {
       if (value !== undefined) setInternalValue(value);
@@ -87,90 +86,70 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const wrapperClasses = [
-      'inline-flex items-center',
-      'bg-neutral-bg-container',
-      'border border-solid rounded-[6px]',
-      'transition-all duration-200',
-      heightMap[size],
-      disabled
-        ? 'border-neutral-border bg-neutral-fill-tertiary cursor-not-allowed opacity-60'
-        : borderStatusMap[status],
-      (addonBefore || addonAfter) ? 'rounded-none' : '',
+      'ax-input',
+      sizeClass[size],
+      disabled ? 'ax-input--disabled' : status === 'error' ? 'ax-input--error' : status === 'warning' ? 'ax-input--warning' : '',
+      addonBefore ? 'ax-input--addon-before' : '',
+      addonAfter ? 'ax-input--addon-after' : '',
       className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    ].filter(Boolean).join(' ');
 
-    const inputClasses = [
-      'flex-1 bg-transparent outline-none border-none',
-      'text-neutral-text placeholder:text-neutral-text-placeholder',
-      'font-["Heebo",sans-serif]',
-      fontSizeMap[size],
-      paddingMap[size],
-      disabled ? 'cursor-not-allowed' : '',
-    ]
-      .filter(Boolean)
-      .join(' ');
+    const fieldClasses = [
+      'ax-input__field',
+      fieldSizeClass[size],
+    ].filter(Boolean).join(' ');
 
-    const addonClasses = [
-      'inline-flex items-center justify-center',
-      'bg-neutral-fill-tertiary border-neutral-border',
-      heightMap[size],
-      'px-[11px]',
-      fontSizeMap[size],
-      'text-neutral-text-label',
-    ].join(' ');
+    const describedBy = [helperId, ariaDescribedBy].filter(Boolean).join(' ') || undefined;
 
     return (
-      <span className="inline-flex items-stretch w-full">
+      <span className="ax-input-wrapper">
         {addonBefore && (
-          <span className={`${addonClasses} border border-solid rounded-l-[6px] border-r-0`}>
+          <span className={`ax-input__addon ax-input__addon--before ${addonSizeClass[size]}`.trim()}>
             {addonBefore}
           </span>
         )}
-        <span
-          className={[
-            wrapperClasses,
-            addonBefore ? 'rounded-l-none' : '',
-            addonAfter ? 'rounded-r-none' : '',
-          ]
-            .filter(Boolean)
-            .join(' ')}
-        >
+        <span className={wrapperClasses}>
           {prefix && (
-            <span className={`flex items-center text-neutral-text-label pl-[11px] ${fontSizeMap[size]}`}>
+            <span className="ax-input__prefix" aria-hidden="true">
               {prefix}
             </span>
           )}
           <input
             ref={ref}
+            id={id}
             disabled={disabled}
             value={internalValue}
             onChange={handleChange}
-            className={inputClasses}
+            className={fieldClasses}
+            aria-invalid={status === 'error' || undefined}
+            aria-required={required || undefined}
+            aria-describedby={describedBy}
+            required={required}
             {...rest}
           />
           {allowClear && internalValue && !disabled && (
             <button
               type="button"
               onClick={handleClear}
-              className="flex items-center pr-[11px] text-neutral-text-label hover:text-neutral-text transition-colors"
+              className="ax-input__clear"
+              aria-label="נקה שדה"
             >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
                 <path d="M6 5.293L10.146 1.147a.5.5 0 01.708.708L6.707 6l4.147 4.146a.5.5 0 01-.708.708L6 6.707 1.854 10.854a.5.5 0 01-.708-.708L5.293 6 1.146 1.854A.5.5 0 011.854 1.146L6 5.293z" />
               </svg>
             </button>
           )}
           {suffix && (
-            <span className={`flex items-center text-neutral-text-label pr-[11px] ${fontSizeMap[size]}`}>
-              {suffix}
-            </span>
+            <span className="ax-input__suffix">{suffix}</span>
           )}
         </span>
         {addonAfter && (
-          <span className={`${addonClasses} border border-solid rounded-r-[6px] border-l-0`}>
+          <span className={`ax-input__addon ax-input__addon--after ${addonSizeClass[size]}`.trim()}>
             {addonAfter}
           </span>
+        )}
+        {helperText && id && (
+          <span id={helperId} style={{ display: 'none' }}>{helperText}</span>
         )}
       </span>
     );

@@ -357,6 +357,9 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, '
     allowClear?: boolean;
     addonBefore?: React.ReactNode;
     addonAfter?: React.ReactNode;
+    required?: boolean;
+    helperText?: string;
+    label?: string;
 }
 declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;
 
@@ -544,13 +547,17 @@ interface CheckboxProps {
     defaultChecked?: boolean;
     indeterminate?: boolean;
     disabled?: boolean;
+    required?: boolean;
     size?: CheckboxSize;
     onChange?: (checked: boolean) => void;
     children?: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
+    id?: string;
+    name?: string;
+    value?: string;
 }
-declare function Checkbox({ checked: controlledChecked, defaultChecked, indeterminate, disabled, size, onChange, children, className, style, }: CheckboxProps): react_jsx_runtime.JSX.Element;
+declare function Checkbox({ checked: controlledChecked, defaultChecked, indeterminate, disabled, required, size, onChange, children, className, style, id, name, value, }: CheckboxProps): react_jsx_runtime.JSX.Element;
 interface CheckboxOption {
     label: React.ReactNode;
     value: string;
@@ -574,12 +581,13 @@ interface RadioProps {
     defaultChecked?: boolean;
     disabled?: boolean;
     value?: string;
+    name?: string;
     onChange?: (value: string) => void;
     children?: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
 }
-declare function Radio({ checked: controlledChecked, defaultChecked, disabled, value, onChange, children, className, style, }: RadioProps): react_jsx_runtime.JSX.Element;
+declare function Radio({ checked: controlledChecked, defaultChecked, disabled, value, name, onChange, children, className, style, }: RadioProps): react_jsx_runtime.JSX.Element;
 interface RadioOption {
     label: React.ReactNode;
     value: string;
@@ -593,8 +601,9 @@ interface RadioGroupProps {
     disabled?: boolean;
     direction?: 'horizontal' | 'vertical';
     className?: string;
+    name?: string;
 }
-declare function RadioGroup({ options, value: controlled, defaultValue, onChange, disabled, direction, className, }: RadioGroupProps): react_jsx_runtime.JSX.Element;
+declare function RadioGroup({ options, value: controlled, defaultValue, onChange, disabled, direction, className, name, }: RadioGroupProps): react_jsx_runtime.JSX.Element;
 type RadioButtonStyle = 'outlined' | 'solid';
 type RadioButtonPosition = 'first' | 'center' | 'last' | 'only';
 interface RadioButtonProps {
@@ -632,8 +641,9 @@ interface SwitchProps {
     onChange?: (checked: boolean) => void;
     className?: string;
     style?: React.CSSProperties;
+    'aria-label'?: string;
 }
-declare function Switch({ checked: controlledChecked, defaultChecked, disabled, loading, size, checkedChildren, unCheckedChildren, onChange, className, style, }: SwitchProps): react_jsx_runtime.JSX.Element;
+declare function Switch({ checked: controlledChecked, defaultChecked, disabled, loading, size, checkedChildren, unCheckedChildren, onChange, className, style, 'aria-label': ariaLabel, }: SwitchProps): react_jsx_runtime.JSX.Element;
 
 type AlertType = 'success' | 'info' | 'warning' | 'error';
 interface AlertProps {

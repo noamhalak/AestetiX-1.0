@@ -1,0 +1,33 @@
+/* ── Breadcrumb ──────────────────────────────────────────── */
+.ax-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--ax-font-family);
+}
+
+.ax-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-family: var(--ax-font-family);
+  color: var(--ax-color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.ax-breadcrumb__item--last     { color: var(--ax-color-text); cursor: default; }
+.ax-breadcrumb__item--disabled { color: var(--ax-color-text-disabled); cursor: default; }
+.ax-breadcrumb__item--clickable { cursor: pointer; }
+.ax-breadcrumb__item--clickable:hover { color: #4096ff; }
+
+.ax-breadcrumb__item-icon { display: flex; align-items: center; font-size: var(--ax-font-size); }
+
+.ax-breadcrumb__separator {
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  color: var(--ax-color-text-secondary);
+  user-select: none;
+}

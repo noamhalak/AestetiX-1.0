@@ -1,0 +1,78 @@
+/* ─────────────────────────────────────────────────────────────────
+   AestetiX 1.0 — CSS Custom Properties (Design Tokens)
+   ───────────────────────────────────────────────────────────────── */
+:root {
+  /* Colors — Primary */
+  --ax-color-primary: #1677ff;
+  --ax-color-primary-hover: #4096ff;
+  --ax-color-primary-active: #0958d9;
+
+  /* Colors — Semantic */
+  --ax-color-success: #52c41a;
+  --ax-color-warning: #faad14;
+  --ax-color-error: #ff4d4f;
+  --ax-color-info: #1677ff;
+
+  /* Colors — Text */
+  --ax-color-text: rgba(0,0,0,0.88);
+  --ax-color-text-secondary: rgba(0,0,0,0.45);
+  --ax-color-text-label: rgba(0,0,0,0.65);
+  --ax-color-text-disabled: rgba(0,0,0,0.25);
+  --ax-color-text-placeholder: rgba(0,0,0,0.25);
+  --ax-color-text-solid: #ffffff;
+
+  /* Colors — Border */
+  --ax-color-border: #d9d9d9;
+  --ax-color-border-secondary: #f0f0f0;
+
+  /* Colors — Background */
+  --ax-color-bg: #ffffff;
+  --ax-color-bg-container: #ffffff;
+  --ax-color-bg-layout: #f0f2f5;
+  --ax-color-bg-floating: #ffffff;
+  --ax-color-bg-tooltip: rgba(0,0,0,0.875);
+  --ax-color-fill-tertiary: rgba(0,0,0,0.04);
+  --ax-color-fill-quaternary: rgba(0,0,0,0.02);
+
+  /* Border Radius */
+  --ax-border-radius: 6px;
+  --ax-border-radius-lg: 8px;
+  --ax-border-radius-sm: 4px;
+
+  /* Typography */
+  --ax-font-family: "Heebo", sans-serif;
+  --ax-font-size: 14px;
+  --ax-font-size-sm: 12px;
+  --ax-font-size-lg: 16px;
+  --ax-line-height: 22px;
+  --ax-line-height-sm: 20px;
+  --ax-line-height-lg: 24px;
+
+  /* Control Heights */
+  --ax-control-height: 32px;
+  --ax-control-height-sm: 24px;
+  --ax-control-height-lg: 40px;
+
+  /* Spacing / Padding */
+  --ax-padding-xs: 4px;
+  --ax-padding-sm: 8px;
+  --ax-padding: 16px;
+  --ax-padding-lg: 24px;
+
+  /* Shadows */
+  --ax-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  --ax-shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --ax-shadow-lg: 0 6px 16px rgba(0,0,0,0.08);
+  --ax-shadow-modal: 0 6px 16px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.04);
+}
+
+/* Spin animation (used by Button loading, Spin, Select, Table) */
+@keyframes ax-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Skeleton shimmer animation */
+@keyframes ax-skeleton-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

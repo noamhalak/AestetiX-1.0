@@ -1,0 +1,81 @@
+/* ── Tabs ────────────────────────────────────────────────── */
+.ax-tabs {
+  display: flex;
+  font-family: var(--ax-font-family);
+}
+.ax-tabs--top    { flex-direction: column; }
+.ax-tabs--bottom { flex-direction: column-reverse; }
+.ax-tabs--left   { flex-direction: row; }
+.ax-tabs--right  { flex-direction: row-reverse; }
+
+.ax-tabs__nav {
+  display: flex;
+}
+.ax-tabs__nav--top    { flex-direction: row; border-bottom: 1px solid var(--ax-color-border-secondary); }
+.ax-tabs__nav--bottom { flex-direction: row; border-top: 1px solid var(--ax-color-border-secondary); }
+.ax-tabs__nav--left   { flex-direction: column; border-right: 1px solid var(--ax-color-border-secondary); }
+.ax-tabs__nav--right  { flex-direction: column; border-left: 1px solid var(--ax-color-border-secondary); }
+.ax-tabs__nav--card   { gap: 2px; padding: 4px 4px 0; background: rgba(0,0,0,0.02); border: none; }
+
+.ax-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-family: var(--ax-font-family);
+  font-weight: 400;
+  color: var(--ax-color-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s;
+  position: relative;
+  border-bottom: 2px solid transparent;
+}
+.ax-tabs__tab--large  { padding: 12px 16px; font-size: var(--ax-font-size-lg); }
+.ax-tabs__tab--small  { padding: 4px 16px; }
+
+.ax-tabs__tab--active { color: var(--ax-color-primary); font-weight: 600; }
+.ax-tabs__tab--active.ax-tabs__tab--top    { border-bottom-color: var(--ax-color-primary); }
+.ax-tabs__tab--active.ax-tabs__tab--bottom { border-top-color: var(--ax-color-primary); border-bottom: 2px solid transparent; }
+.ax-tabs__tab--active.ax-tabs__tab--left   { border-right-color: var(--ax-color-primary); border-bottom: none; border-right: 2px solid var(--ax-color-primary); }
+.ax-tabs__tab--active.ax-tabs__tab--right  { border-left-color: var(--ax-color-primary); border-bottom: none; border-left: 2px solid var(--ax-color-primary); }
+
+.ax-tabs__tab--disabled { color: var(--ax-color-text-disabled); cursor: not-allowed; }
+.ax-tabs__tab:hover:not(.ax-tabs__tab--disabled):not(.ax-tabs__tab--active) { color: #4096ff; }
+
+/* Card tab */
+.ax-tabs__tab--card {
+  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-radius: var(--ax-border-radius) var(--ax-border-radius) 0 0;
+  background: transparent;
+}
+.ax-tabs__tab--card.ax-tabs__tab--active {
+  border-color: var(--ax-color-border-secondary);
+  border-bottom-color: #fff;
+  background: #fff;
+  margin-bottom: -1px;
+}
+.ax-tabs__tab--card:hover:not(.ax-tabs__tab--disabled) { background: rgba(0,0,0,0.04); }
+
+.ax-tabs__tab-icon { display: flex; align-items: center; }
+
+.ax-tabs__close {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  color: var(--ax-color-text-secondary);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.ax-tabs__panel {
+  padding: 16px 0;
+  flex: 1;
+  min-width: 0;
+}

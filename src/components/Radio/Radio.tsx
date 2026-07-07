@@ -2,13 +2,7 @@ import React from 'react';
 
 // ─────────────────────────────────────────────────────────────────
 //  Radio — AestetiX 1.0
-//  Figma page: ❖ Radio - ✅ 🎨🤖🤖 (node 4:31)
-//
-//  Components:
-//    Radio         — state × checked (height 22px)
-//    Radio.Group   — items=2-6 × direction=vertical/horizontal
-//    RadioButton   — state × size × style(outlined/solid) × position(first/center/last)
-//    RadioGroup.Buttons — items=2-6 × size × style
+//  Fix: native <input type="radio">, CSS classes, aria attrs
 // ─────────────────────────────────────────────────────────────────
 
 export type RadioSize = 'small' | 'default' | 'large';
@@ -18,6 +12,7 @@ export interface RadioProps {
   defaultChecked?: boolean;
   disabled?: boolean;
   value?: string;
+  name?: string;
   onChange?: (value: string) => void;
   children?: React.ReactNode;
   className?: string;
@@ -29,14 +24,13 @@ export function Radio({
   defaultChecked = false,
   disabled = false,
   value = '',
+  name,
   onChange,
   children,
   className = '',
   style,
 }: RadioProps) {
   const [checked, setChecked] = React.useState(controlledChecked ?? defaultChecked);
-  const [hovered, setHovered] = React.useState(false);
-  const [focused, setFocused] = React.useState(false);
 
   React.useEffect(() => {
     if (controlledChecked !== undefined) setChecked(controlledChecked);
@@ -48,78 +42,28 @@ export function Radio({
     onChange?.(value);
   };
 
-  const outerBorder = disabled
-    ? '#d9d9d9'
-    : checked
-      ? '#1677ff'
-      : hovered || focused
-        ? '#1677ff'
-        : '#d9d9d9';
-
-  const shadow = focused && !disabled ? '0 0 0 2px rgba(22,119,255,0.2)' : undefined;
+  const labelClasses = [
+    'ax-radio',
+    disabled ? 'ax-radio--disabled' : '',
+    className,
+  ].filter(Boolean).join(' ');
 
   return (
-    <label
-      className={className}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '8px',
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        userSelect: 'none',
-        ...style,
-      }}
-      onMouseEnter={() => !disabled && setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-    >
+    <label className={labelClasses} style={style}>
       <input
         type="radio"
+        value={value}
+        name={name}
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
-        style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
+        className="ax-radio__input"
+        aria-checked={checked}
+        aria-disabled={disabled}
       />
-      {/* outer ring */}
-      <span
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 16,
-          height: 16,
-          border: `1px solid ${outerBorder}`,
-          borderRadius: '50%',
-          backgroundColor: disabled ? '#f5f5f5' : '#fff',
-          boxShadow: shadow,
-          flexShrink: 0,
-          transition: 'all 0.2s',
-        }}
-      >
-        {checked && (
-          <span
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              backgroundColor: disabled ? '#bfbfbf' : '#1677ff',
-              transition: 'transform 0.2s',
-            }}
-          />
-        )}
-      </span>
+      <span className="ax-radio__dot" aria-hidden="true" />
       {children && (
-        <span
-          style={{
-            fontSize: '14px',
-            lineHeight: '22px',
-            fontFamily: '"Heebo", sans-serif',
-            color: disabled ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.88)',
-          }}
-        >
-          {children}
-        </span>
+        <span className="ax-radio__label">{children}</span>
       )}
     </label>
   );
@@ -140,6 +84,7 @@ export interface RadioGroupProps {
   disabled?: boolean;
   direction?: 'horizontal' | 'vertical';
   className?: string;
+  name?: string;
 }
 
 export function RadioGroup({
@@ -150,6 +95,7 @@ export function RadioGroup({
   disabled = false,
   direction = 'horizontal',
   className = '',
+  name,
 }: RadioGroupProps) {
   const [value, setValue] = React.useState(controlled ?? defaultValue ?? '');
 
@@ -162,20 +108,19 @@ export function RadioGroup({
     onChange?.(v);
   };
 
+  const groupClasses = [
+    'ax-radio-group',
+    direction === 'vertical' ? 'ax-radio-group--vertical' : 'ax-radio-group--horizontal',
+    className,
+  ].filter(Boolean).join(' ');
+
   return (
-    <div
-      className={className}
-      style={{
-        display: 'flex',
-        flexDirection: direction === 'vertical' ? 'column' : 'row',
-        gap: direction === 'vertical' ? '8px' : '16px',
-        flexWrap: 'wrap',
-      }}
-    >
+    <div className={groupClasses} role="radiogroup">
       {options.map((opt) => (
         <Radio
           key={opt.value}
           value={opt.value}
+          name={name}
           checked={value === opt.value}
           disabled={disabled || opt.disabled}
           onChange={handleChange}
@@ -188,7 +133,6 @@ export function RadioGroup({
 }
 
 // ── RadioButton (Button style item) ──────────────────────────────
-// Figma: state=default/hover/active/disabled × size=small/default/large × style=outlined/solid × position=first/center/last
 export type RadioButtonStyle = 'outlined' | 'solid';
 export type RadioButtonPosition = 'first' | 'center' | 'last' | 'only';
 
@@ -203,10 +147,6 @@ export interface RadioButtonProps {
   children?: React.ReactNode;
 }
 
-const rbHeight: Record<RadioSize, number> = { small: 24, default: 32, large: 40 };
-const rbFontSize: Record<RadioSize, string> = { small: '12px', default: '14px', large: '16px' };
-const rbPadding: Record<RadioSize, string> = { small: '0 7px', default: '0 15px', large: '0 15px' };
-
 export function RadioButton({
   value = '',
   checked = false,
@@ -217,68 +157,22 @@ export function RadioButton({
   onChange,
   children,
 }: RadioButtonProps) {
-  const [hovered, setHovered] = React.useState(false);
-
-  const radius: Record<RadioButtonPosition, string> = {
-    first:  '6px 0 0 6px',
-    center: '0',
-    last:   '0 6px 6px 0',
-    only:   '6px',
-  };
-
-  let bg: string;
-  let border: string;
-  let color: string;
-
-  if (disabled) {
-    bg = '#f5f5f5';
-    border = '#d9d9d9';
-    color = 'rgba(0,0,0,0.25)';
-  } else if (checked) {
-    if (btnStyle === 'solid') {
-      bg = '#1677ff';
-      border = '#1677ff';
-      color = '#fff';
-    } else {
-      bg = '#e6f4ff';
-      border = '#1677ff';
-      color = '#1677ff';
-    }
-  } else if (hovered) {
-    bg = btnStyle === 'solid' ? 'rgba(0,0,0,0.04)' : '#fff';
-    border = '#1677ff';
-    color = btnStyle === 'solid' ? 'rgba(0,0,0,0.88)' : '#1677ff';
-  } else {
-    bg = btnStyle === 'solid' ? '#fff' : '#fff';
-    border = '#d9d9d9';
-    color = 'rgba(0,0,0,0.88)';
-  }
+  const classes = [
+    'ax-radio-btn',
+    size === 'small' ? 'ax-radio-btn--small' : size === 'large' ? 'ax-radio-btn--large' : '',
+    `ax-radio-btn--${position}`,
+    checked ? `ax-radio-btn--checked ax-radio-btn--${btnStyle}` : '',
+    disabled ? 'ax-radio-btn--disabled' : '',
+  ].filter(Boolean).join(' ');
 
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={() => !disabled && onChange?.(value)}
-      onMouseEnter={() => !disabled && setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        height: rbHeight[size],
-        padding: rbPadding[size],
-        fontSize: rbFontSize[size],
-        lineHeight: '1',
-        fontFamily: '"Heebo", sans-serif',
-        fontWeight: checked ? 600 : 400,
-        background: bg,
-        border: `1px solid ${border}`,
-        borderRadius: radius[position],
-        color,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        transition: 'all 0.2s',
-        whiteSpace: 'nowrap',
-        marginLeft: position === 'center' || position === 'last' ? -1 : 0,
-        position: 'relative',
-        zIndex: checked ? 1 : 0,
-      }}
+      className={classes}
+      aria-pressed={checked}
+      aria-disabled={disabled}
     >
       {children}
     </button>
@@ -326,7 +220,7 @@ export function RadioGroupButtons({
   };
 
   return (
-    <div className={className} style={{ display: 'inline-flex' }}>
+    <div className={`ax-radio-group-buttons ${className}`.trim()} role="group">
       {options.map((opt, i) => (
         <RadioButton
           key={opt.value}

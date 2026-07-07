@@ -2,12 +2,7 @@ import React from 'react';
 
 // ─────────────────────────────────────────────────────────────────
 //  Switch — AestetiX 1.0
-//  Figma page: ❖ Switch - ✅ 🎨🤖🤖 (node 4:35)
-//
-//  state: default | pressed | loading | disabled
-//  active: true | false
-//  size: default (44×22px) | small (28×16px)
-//  content: none | icon | text
+//  Fix: CSS classes, role="switch", aria-checked, aria-disabled
 // ─────────────────────────────────────────────────────────────────
 
 export type SwitchSize = 'default' | 'small';
@@ -23,6 +18,7 @@ export interface SwitchProps {
   onChange?: (checked: boolean) => void;
   className?: string;
   style?: React.CSSProperties;
+  'aria-label'?: string;
 }
 
 export function Switch({
@@ -36,6 +32,7 @@ export function Switch({
   onChange,
   className = '',
   style,
+  'aria-label': ariaLabel,
 }: SwitchProps) {
   const [checked, setChecked] = React.useState(controlledChecked ?? defaultChecked);
   const [pressed, setPressed] = React.useState(false);
@@ -51,94 +48,62 @@ export function Switch({
     onChange?.(next);
   };
 
-  const isDefault = size === 'default';
-  const trackW = isDefault ? 44 : 28;
-  const trackH = isDefault ? 22 : 16;
-  const thumbSize = isDefault ? 18 : 12;
-  const thumbOffset = isDefault ? 2 : 2;
-  const thumbTravel = trackW - thumbSize - thumbOffset * 2;
+  const isSmall = size === 'small';
+  const thumbSize = isSmall ? 12 : 18;
+  const borderSize = isSmall ? 1.5 : 2;
 
-  const trackBg = disabled
-    ? 'rgba(0,0,0,0.25)'
-    : checked
-      ? '#1677ff'
-      : 'rgba(0,0,0,0.25)';
+  const classes = [
+    'ax-switch',
+    isSmall ? 'ax-switch--small' : '',
+    checked ? 'ax-switch--checked' : '',
+    disabled ? 'ax-switch--disabled' : '',
+    loading ? 'ax-switch--loading' : '',
+    pressed ? 'ax-switch--pressed' : '',
+    className,
+  ].filter(Boolean).join(' ');
 
-  const thumbScale = pressed && !disabled && !loading ? 1.1 : 1;
+  const childrenLeft = checked
+    ? (isSmall ? (thumbSize + 2 + 4) : (thumbSize + 2 + 4))
+    : 'auto';
+  const childrenRight = !checked
+    ? (isSmall ? (thumbSize + 2 + 4) : (thumbSize + 2 + 4))
+    : 'auto';
 
   return (
     <button
       type="button"
       role="switch"
       aria-checked={checked}
+      aria-disabled={disabled}
+      aria-label={ariaLabel}
       disabled={disabled}
-      className={className}
+      className={classes}
       onClick={handleClick}
       onMouseDown={() => !disabled && !loading && setPressed(true)}
       onMouseUp={() => setPressed(false)}
       onMouseLeave={() => setPressed(false)}
-      style={{
-        position: 'relative',
-        display: 'inline-flex',
-        alignItems: 'center',
-        width: trackW,
-        height: trackH,
-        borderRadius: trackH / 2,
-        backgroundColor: trackBg,
-        border: 'none',
-        cursor: disabled || loading ? 'not-allowed' : 'pointer',
-        padding: 0,
-        transition: 'background-color 0.2s',
-        flexShrink: 0,
-        ...style,
-      }}
+      style={style}
     >
-      {/* children text/icon inside track */}
       {(checkedChildren || unCheckedChildren) && (
         <span
+          className="ax-switch__children"
           style={{
-            position: 'absolute',
-            left: checked ? thumbOffset + thumbSize + 4 : 'auto',
-            right: checked ? 'auto' : thumbOffset + thumbSize + 4,
-            color: '#fff',
-            fontSize: isDefault ? '12px' : '10px',
-            lineHeight: 1,
-            transition: 'all 0.2s',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
+            left: checked ? childrenLeft : 'auto',
+            right: !checked ? childrenRight : 'auto',
           }}
+          aria-hidden="true"
         >
           {checked ? checkedChildren : unCheckedChildren}
         </span>
       )}
-
-      {/* thumb */}
-      <span
-        style={{
-          position: 'absolute',
-          left: checked ? thumbOffset + thumbTravel : thumbOffset,
-          width: thumbSize,
-          height: thumbSize,
-          borderRadius: '50%',
-          backgroundColor: '#fff',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          transition: 'left 0.2s, transform 0.15s',
-          transform: `scale(${thumbScale})`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <span className="ax-switch__thumb" aria-hidden="true">
         {loading && (
           <span
+            className="ax-switch__loader"
             style={{
               width: thumbSize - 4,
               height: thumbSize - 4,
-              border: '1.5px solid #1677ff',
-              borderTopColor: 'transparent',
-              borderRadius: '50%',
-              animation: 'spin 0.8s linear infinite',
-              display: 'block',
+              border: `${borderSize}px solid var(--ax-color-primary)`,
             }}
           />
         )}

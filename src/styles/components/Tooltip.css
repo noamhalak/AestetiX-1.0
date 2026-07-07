@@ -1,0 +1,28 @@
+/* ── Tooltip ─────────────────────────────────────────────── */
+.ax-tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ax-tooltip__bubble {
+  position: absolute;
+  z-index: 1070;
+  color: #fff;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-family: var(--ax-font-family);
+  padding: 6px 8px;
+  border-radius: var(--ax-border-radius);
+  white-space: pre-line;
+  max-width: 320px;
+  word-break: break-word;
+  box-shadow: var(--ax-shadow-lg);
+  pointer-events: none;
+}
+
+.ax-tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}

@@ -1,0 +1,55 @@
+/* ── Switch ─────────────────────────────────────────────── */
+.ax-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(0,0,0,0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+.ax-switch--checked { background: var(--ax-color-primary); }
+.ax-switch--small   { width: 28px; height: 16px; border-radius: 8px; }
+.ax-switch--disabled { cursor: not-allowed; opacity: 0.65; }
+.ax-switch--loading  { cursor: wait; }
+
+.ax-switch__children {
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ax-switch--small .ax-switch__children { font-size: 10px; }
+
+.ax-switch__thumb {
+  position: absolute;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: left 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ax-switch--checked .ax-switch__thumb { left: calc(44px - 18px - 2px); }
+.ax-switch--small .ax-switch__thumb { width: 12px; height: 12px; left: 2px; }
+.ax-switch--small.ax-switch--checked .ax-switch__thumb { left: calc(28px - 12px - 2px); }
+.ax-switch--pressed .ax-switch__thumb { transform: scale(1.1); }
+
+.ax-switch__loader {
+  display: block;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: ax-spin 0.8s linear infinite;
+}

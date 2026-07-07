@@ -1,0 +1,60 @@
+/* ── Notification ────────────────────────────────────────── */
+.ax-notification-container {
+  position: fixed;
+  z-index: 1100;
+  display: flex;
+  gap: 16px;
+  pointer-events: none;
+}
+.ax-notification-container--topRight    { top: 24px; right: 24px; flex-direction: column; align-items: flex-end; }
+.ax-notification-container--topLeft     { top: 24px; left: 24px; flex-direction: column; align-items: flex-start; }
+.ax-notification-container--bottomRight { bottom: 24px; right: 24px; flex-direction: column-reverse; align-items: flex-end; }
+.ax-notification-container--bottomLeft  { bottom: 24px; left: 24px; flex-direction: column-reverse; align-items: flex-start; }
+
+.ax-notification-item { pointer-events: auto; }
+
+.ax-notification-card {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #fff;
+  border-radius: var(--ax-border-radius-lg);
+  box-shadow: var(--ax-shadow-modal);
+  width: 384px;
+  font-family: var(--ax-font-family);
+  position: relative;
+}
+
+.ax-notification-card__icon { flex-shrink: 0; margin-top: 1px; }
+
+.ax-notification-card__body { flex: 1; min-width: 0; }
+
+.ax-notification-card__title {
+  font-size: var(--ax-font-size-lg);
+  line-height: var(--ax-line-height-lg);
+  font-weight: 600;
+  color: var(--ax-color-text);
+}
+.ax-notification-card__title--closable { padding-right: 24px; }
+
+.ax-notification-card__description {
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  color: rgba(0,0,0,0.65);
+  margin-top: 8px;
+}
+
+.ax-notification-card__btn { margin-top: 16px; }
+
+.ax-notification-card__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  color: var(--ax-color-text-secondary);
+}

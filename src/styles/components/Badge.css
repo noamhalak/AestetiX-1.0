@@ -1,0 +1,68 @@
+/* ── Badge ──────────────────────────────────────────────── */
+.ax-badge {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Status badge (standalone) */
+.ax-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+}
+.ax-badge-status__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ax-badge-status__text { color: var(--ax-color-text); }
+
+/* Count badge (standalone, no children) */
+.ax-badge-count--standalone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: var(--ax-color-error);
+  border-radius: 10px;
+  font-size: var(--ax-font-size-sm);
+  font-family: var(--ax-font-family);
+  color: #fff;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Dot overlay */
+.ax-badge__dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transform: translate(50%, -50%);
+}
+
+/* Count overlay */
+.ax-badge__count {
+  position: absolute;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: var(--ax-color-error);
+  border-radius: 10px;
+  font-size: var(--ax-font-size-sm);
+  font-family: var(--ax-font-family);
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid #fff;
+  transform: translate(50%, -50%);
+  white-space: nowrap;
+}

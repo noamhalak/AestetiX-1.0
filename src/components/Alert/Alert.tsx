@@ -2,12 +2,7 @@ import React from 'react';
 
 // ─────────────────────────────────────────────────────────────────
 //  Alert — AestetiX 1.0
-//  Figma page: ❖ Alert - ✅ 🎨🤖🤖 (node 4:38)
-//
-//  type: success | info | warning | error
-//  banner: boolean (no border/radius, full-width)
-//  showDescription: boolean
-//  closable: boolean
+//  Fix: CSS classes, role="alert"/"status", no inline styles
 // ─────────────────────────────────────────────────────────────────
 
 export type AlertType = 'success' | 'info' | 'warning' | 'error';
@@ -34,7 +29,7 @@ const alertTokens: Record<AlertType, { bg: string; border: string; iconColor: st
 
 function SuccessIcon({ color }: { color: string }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
       <circle cx="7" cy="7" r="7" fill={color} />
       <path d="M3.5 7l2.5 2.5 4.5-4.5" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
@@ -43,7 +38,7 @@ function SuccessIcon({ color }: { color: string }) {
 
 function InfoIcon({ color }: { color: string }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
       <circle cx="7" cy="7" r="7" fill={color} />
       <rect x="6.3" y="6" width="1.4" height="4.5" rx="0.7" fill="#fff" />
       <circle cx="7" cy="4.2" r="0.8" fill="#fff" />
@@ -53,7 +48,7 @@ function InfoIcon({ color }: { color: string }) {
 
 function WarningIcon({ color }: { color: string }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
       <path d="M7 1L13.5 12H0.5L7 1z" fill={color} />
       <rect x="6.3" y="5.5" width="1.4" height="3.5" rx="0.7" fill="#fff" />
       <circle cx="7" cy="10.5" r="0.8" fill="#fff" />
@@ -63,7 +58,7 @@ function WarningIcon({ color }: { color: string }) {
 
 function ErrorIcon({ color }: { color: string }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
       <circle cx="7" cy="7" r="7" fill={color} />
       <path d="M4.5 4.5l5 5M9.5 4.5l-5 5" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
@@ -82,7 +77,7 @@ function AlertIcon({ type }: { type: AlertType }) {
 
 function CloseIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
       <path d="M2 2l8 8M10 2l-8 8" stroke="rgba(0,0,0,0.45)" strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   );
@@ -111,61 +106,39 @@ export function Alert({
     onClose?.();
   };
 
+  // role="alert" for error/warning (assertive), role="status" for info/success (polite)
+  const role = type === 'error' || type === 'warning' ? 'alert' : 'status';
+  const ariaLive = type === 'error' || type === 'warning' ? 'assertive' : 'polite';
+
+  const classes = [
+    'ax-alert',
+    `ax-alert--${type}`,
+    description ? 'ax-alert--with-description' : '',
+    banner ? 'ax-alert--banner' : '',
+    className,
+  ].filter(Boolean).join(' ');
+
   return (
     <div
-      className={className}
-      role="alert"
+      className={classes}
+      role={role}
+      aria-live={ariaLive}
       style={{
-        display: 'flex',
-        alignItems: description ? 'flex-start' : 'center',
-        gap: '8px',
-        padding: description ? '12px 16px' : '8px 16px',
-        backgroundColor: bg,
-        border: banner ? 'none' : `1px solid ${border}`,
-        borderRadius: banner ? 0 : '6px',
-        fontFamily: '"Heebo", sans-serif',
-        fontSize: '14px',
-        lineHeight: '22px',
-        color: 'rgba(0,0,0,0.88)',
+        ...(banner ? {} : { backgroundColor: bg, borderColor: border }),
+        ...(banner ? { backgroundColor: bg } : {}),
         ...style,
       }}
     >
       {showIcon && (
-        <span
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            flexShrink: 0,
-            marginTop: description ? '4px' : 0,
-          }}
-        >
+        <span className="ax-alert__icon" aria-hidden="true">
           {icon ?? <AlertIcon type={type} />}
         </span>
       )}
 
-      <span style={{ flex: 1, minWidth: 0 }}>
-        <span
-          style={{
-            display: 'block',
-            fontWeight: description ? 600 : 400,
-            fontSize: '14px',
-            lineHeight: '22px',
-          }}
-        >
-          {message}
-        </span>
+      <span className="ax-alert__content">
+        <span className="ax-alert__message">{message}</span>
         {description && (
-          <span
-            style={{
-              display: 'block',
-              fontSize: '14px',
-              lineHeight: '22px',
-              color: 'rgba(0,0,0,0.65)',
-              marginTop: '4px',
-            }}
-          >
-            {description}
-          </span>
+          <span className="ax-alert__description">{description}</span>
         )}
       </span>
 
@@ -173,16 +146,8 @@ export function Alert({
         <button
           type="button"
           onClick={handleClose}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '4px',
-            flexShrink: 0,
-            marginTop: description ? '2px' : 0,
-          }}
+          className="ax-alert__close"
+          aria-label="סגור התראה"
         >
           <CloseIcon />
         </button>

@@ -1,0 +1,86 @@
+/* ── Table ──────────────────────────────────────────────── */
+.ax-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--ax-border-radius-lg);
+  border: 1px solid var(--ax-color-border-secondary);
+  font-family: var(--ax-font-family);
+}
+
+.ax-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.ax-table__loading {
+  padding: 24px;
+  text-align: center;
+  color: var(--ax-color-text-secondary);
+}
+
+.ax-table__spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--ax-color-primary);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ax-spin 0.8s linear infinite;
+}
+
+/* Header */
+.ax-table__th {
+  height: 40px;
+  padding: 0 8px;
+  text-align: left;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-weight: 600;
+  font-family: var(--ax-font-family);
+  color: var(--ax-color-text);
+  background: #fafafa;
+  border-bottom: 1px solid var(--ax-color-border-secondary);
+  white-space: nowrap;
+  user-select: none;
+  transition: background 0.15s;
+}
+.ax-table__th--sortable { cursor: pointer; }
+.ax-table__th--hovered  { background: var(--ax-color-fill-tertiary); }
+.ax-table__th--checkbox { width: 40px; text-align: center; }
+
+.ax-table__th-inner { display: inline-flex; align-items: center; }
+.ax-table__sort-icon { display: inline-flex; flex-direction: column; gap: 2px; margin-left: 4px; }
+.ax-table__filter-icon { margin-left: 4px; }
+
+/* Body */
+.ax-table__td {
+  height: 40px;
+  padding: 0 8px;
+  text-align: left;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-family: var(--ax-font-family);
+  color: var(--ax-color-text);
+  background: #fff;
+  border-bottom: 1px solid var(--ax-color-border-secondary);
+  transition: background-color 0.15s;
+}
+.ax-table__td--hovered  { background: rgba(0,0,0,0.02); }
+.ax-table__td--selected { background: #e6f4ff; }
+.ax-table__td--checkbox { text-align: center; }
+
+.ax-table__checkbox-btn {
+  cursor: pointer;
+  display: inline-flex;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.ax-table__empty-cell {
+  padding: 32px;
+  text-align: center;
+  color: var(--ax-color-text-disabled);
+  font-size: var(--ax-font-size);
+}

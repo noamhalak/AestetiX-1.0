@@ -3,6 +3,9 @@
 //  Re-exports all tokens and components
 // ─────────────────────────────────────────────────────────────────
 
+// Styles (CSS custom properties + component classes)
+import './styles/index.css';
+
 // Tokens
 export * from './tokens/design-tokens';
 

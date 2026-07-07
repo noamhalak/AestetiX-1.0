@@ -1,0 +1,37 @@
+/* ── Divider ─────────────────────────────────────────────── */
+.ax-divider--vertical {
+  display: inline-block;
+  width: 1px;
+  height: 0.9em;
+  background: var(--ax-color-border-secondary);
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+.ax-divider--horizontal {
+  border-top: 1px solid var(--ax-color-border-secondary);
+  margin: 16px 0;
+}
+.ax-divider--horizontal-dashed { border-top-style: dashed; }
+
+.ax-divider--with-text {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+.ax-divider--with-text-dashed .ax-divider__line { border-top-style: dashed; }
+
+.ax-divider__line {
+  border-top: 1px solid var(--ax-color-border-secondary);
+}
+
+.ax-divider__text {
+  padding: 0 16px;
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  font-family: var(--ax-font-family);
+  font-weight: 500;
+  color: var(--ax-color-text);
+  white-space: nowrap;
+}
+.ax-divider__text--plain { font-weight: 400; }

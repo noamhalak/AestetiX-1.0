@@ -1,0 +1,39 @@
+/* ── Typography ─────────────────────────────────────────── */
+.ax-title {
+  font-family: var(--ax-font-family);
+  margin: 0;
+  color: var(--ax-color-text);
+}
+.ax-title--disabled { color: var(--ax-color-text-disabled); cursor: not-allowed; }
+
+.ax-text {
+  font-family: var(--ax-font-family);
+}
+
+.ax-link {
+  font-family: var(--ax-font-family);
+  color: var(--ax-color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ax-link:hover  { color: var(--ax-color-primary-hover); }
+.ax-link:active { color: var(--ax-color-primary-active); }
+.ax-link--underlined { text-decoration: underline; text-underline-offset: 2px; }
+.ax-link--disabled { color: var(--ax-color-text-disabled); pointer-events: none; cursor: not-allowed; }
+
+.ax-code {
+  font-family: var(--ax-font-family);
+  font-size: var(--ax-font-size);
+  line-height: var(--ax-line-height);
+  padding: 1px var(--ax-padding-xs);
+  background: var(--ax-color-fill-tertiary);
+  border: 1px solid var(--ax-color-border-secondary);
+  border-radius: 3px;
+  color: var(--ax-color-text);
+}
+
+.ax-paragraph {
+  font-family: var(--ax-font-family);
+  font-weight: 400;
+  margin: 0;
+}
