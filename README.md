@@ -4,6 +4,8 @@ React component library — 29 components, TypeScript, RTL (Hebrew) support, Tab
 
 Based on Ant Design 5 patterns. Built for Israeli SaaS products.
 
+**[📖 Storybook — צפה בכל הקומפוננטות](https://noamhalak.github.io/AestetiX-1.0/)**
+
 ---
 
 ## Installation
